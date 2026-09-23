@@ -1,4 +1,9 @@
-"""Continue a prompt from a saved character-level checkpoint."""
+"""Continue a prompt from a saved character-level checkpoint.
+
+The checkpoint written by train.py holds the weights, the character vocabulary,
+and the config needed to rebuild either the bigram or the GPT. Sampling uses
+the same device order as training: CUDA, then MPS, then CPU.
+"""
 
 import argparse
 from pathlib import Path
@@ -11,6 +16,8 @@ from tokenizer import CharTokenizer
 
 def load_checkpoint(path, device=None):
     device = device or pick_device()
+    # weights_only=False keeps the saved dict (tokenizer, config, history).
+    # Older PyTorch builds do not accept that argument.
     try:
         checkpoint = torch.load(path, map_location=device, weights_only=False)
     except TypeError:
@@ -24,6 +31,10 @@ def load_checkpoint(path, device=None):
 
 
 def continue_prompt(checkpoint_path, prompt, max_new_tokens=300, device=None):
+    """Return the prompt plus `max_new_tokens` new characters.
+
+    An empty prompt starts from a newline, which is token id 0 in this vocabulary.
+    """
     model, tokenizer, checkpoint, device = load_checkpoint(checkpoint_path, device=device)
     if not prompt:
         prompt = "\n"
