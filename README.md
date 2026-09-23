@@ -34,9 +34,17 @@ uv sync
 uv run python -m src.train --preset smoke
 ```
 
+Experiment 005 has its own uv project. From `experiments/language/005-ced`:
+
+```bash
+uv sync
+uv run python -m src.smoke
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
 | 002 | language | nanogpt | done | nanoGPT-style character model on Tiny Shakespeare | laptop / MPS, about 30 seconds | [experiments/language/002-nanogpt](experiments/language/002-nanogpt) |
 | 003 | language | nanochat | done | Chat pipeline smoke on a tiny nanochat model | laptop / MPS, about 20 seconds once data is cached | [experiments/language/003-nanochat](experiments/language/003-nanochat) |
 | 004 | language | mingpt | done | minGPT-style character model on Tiny Shakespeare | laptop / MPS, about 10 seconds | [experiments/language/004-mingpt](experiments/language/004-mingpt) |
+| 005 | language | ced | done | Causal encoder-decoder character model on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds per mode | [experiments/language/005-ced](experiments/language/005-ced) |
