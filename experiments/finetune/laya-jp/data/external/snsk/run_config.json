@@ -1,0 +1,13 @@
+{
+  "model": "jev-1.13.0",
+  "repeats": 3,
+  "shuffle_seed": 20260921,
+  "timeout_seconds": 30,
+  "max_retries": 2,
+  "price_usd_per_million_input_tokens": 0.042,
+  "price_usd_per_million_output_tokens": 0.0,
+  "price_checked_at": "2026-09-21",
+  "price_source": "https://docs.typesafe.ai/models",
+  "score_tolerance": 0.5,
+  "noul_threshold": 0.5
+}

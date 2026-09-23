@@ -1,8 +1,10 @@
 .venv/
 __pycache__/
+*.egg-info/
 *.py[cod]
 .ipynb_checkpoints/
 runs/
 *.pt
 .DS_Store
 experiments/language/003-nanochat/cache/
+experiments/finetune/laya-jp/.cache/

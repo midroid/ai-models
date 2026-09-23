@@ -1,0 +1,246 @@
+{
+  "environment": {
+    "model_id": "convaiinnovations/laya-multilingual",
+    "revision": "82d57fc4f2d1be3d2caac494045f2ec51d0842f3",
+    "laya": "0.3.11",
+    "transformers": "5.17.0",
+    "torch": "2.14.0",
+    "python": "3.14.5",
+    "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+    "requested_device": "mps",
+    "device": "mps",
+    "dtype": "torch.float32"
+  },
+  "bench_ja": {
+    "choice": {
+      "n": 300,
+      "accuracy": 0.746667,
+      "balanced_accuracy": 0.667188,
+      "ece": 0.137701,
+      "brier": 0.398554,
+      "nll": 0.934354
+    },
+    "score": {
+      "n": 300,
+      "accuracy": 0.446667,
+      "balanced_accuracy": 0.406508,
+      "mae_argmax": 0.616667,
+      "mae_expectation": 0.686583,
+      "ece": 0.177959,
+      "brier": 0.743056,
+      "nll": 1.503059,
+      "slot0_count": 0,
+      "slot0_rate": 0.0
+    },
+    "noul": {
+      "n": 300,
+      "accuracy": 0.546667,
+      "balanced_accuracy": 0.528303,
+      "true_accuracy": 0.483146,
+      "false_accuracy": 0.57346,
+      "false_positive_rate": 0.42654,
+      "false_negative_rate": 0.516854,
+      "auroc": 0.522871,
+      "ece": 0.363252,
+      "brier": 0.750353,
+      "nll": 1.554283
+    }
+  },
+  "bench_ja_drift": {
+    "tolerance": 0.02,
+    "gaps": {
+      "choice_accuracy": -0.000333,
+      "score_accuracy": 0.003667,
+      "noul_accuracy": 0.003667,
+      "noul_auroc": -0.000129
+    },
+    "exceeds_tolerance": [],
+    "note": "Published bench_ja numbers are CUDA fp32 on laya 0.3.4. This run is the pinned Hub snapshot on the local device. Prompts were not edited to close a gap."
+  },
+  "bench_en": {
+    "choice": {
+      "n": 290,
+      "accuracy": 0.817241,
+      "balanced_accuracy": 0.750074,
+      "ece": 0.076947,
+      "brier": 0.271161,
+      "nll": 0.613603
+    },
+    "score": {
+      "n": 290,
+      "accuracy": 0.265517,
+      "balanced_accuracy": 0.361857,
+      "mae_argmax": 1.006897,
+      "mae_expectation": 0.877219,
+      "ece": 0.432902,
+      "brier": 0.973056,
+      "nll": 2.288856,
+      "slot0_count": 0,
+      "slot0_rate": 0.0
+    },
+    "noul": {
+      "n": 290,
+      "accuracy": 0.641379,
+      "balanced_accuracy": 0.469697,
+      "true_accuracy": 0.0,
+      "false_accuracy": 0.939394,
+      "false_positive_rate": 0.060606,
+      "false_negative_rate": 1.0,
+      "auroc": 0.35488,
+      "ece": 0.309596,
+      "brier": 0.654506,
+      "nll": 1.728644
+    }
+  },
+  "snsk": {
+    "composite": {
+      "points": 36.904761904761905,
+      "answers_identical_across_repeats": true,
+      "bootstrap": {
+        "samples": 1000,
+        "seed": 2026,
+        "unit": "case",
+        "percentile_2_5": 21.84,
+        "percentile_97_5": 52.38
+      },
+      "published_mlx_fp16": 36.9
+    },
+    "groups": {
+      "choice": {
+        "planned": 36,
+        "valid": 36,
+        "passed": 15,
+        "api_errors": 0,
+        "invalid": 0,
+        "not_run": 0,
+        "pass_rate_valid": 0.4166666666666667,
+        "nll": 1.542281967683619
+      },
+      "score": {
+        "planned": 36,
+        "valid": 36,
+        "passed": 9,
+        "api_errors": 0,
+        "invalid": 0,
+        "not_run": 0,
+        "pass_rate_valid": 0.25,
+        "mae": 1.1113416666666667
+      },
+      "noul": {
+        "planned": 36,
+        "valid": 36,
+        "passed": 18,
+        "api_errors": 0,
+        "invalid": 0,
+        "not_run": 0,
+        "pass_rate_valid": 0.5,
+        "brier": 0.4685289266666667
+      },
+      "composite": {
+        "planned": 12,
+        "valid": 12,
+        "passed": 3,
+        "api_errors": 0,
+        "invalid": 0,
+        "not_run": 0,
+        "pass_rate_valid": 0.25,
+        "atomic_passed": 3,
+        "action_passed": 3
+      }
+    },
+    "valid": 120,
+    "planned": 120
+  },
+  "diagnostics": {
+    "bench_ja": {
+      "single_question": {
+        "n": 900,
+        "rate": 1.0,
+        "logits_available": 900
+      },
+      "score_reversed": {
+        "n": 300,
+        "rate": 0.096667,
+        "slot0_rate": 0.0,
+        "logits_available": 300
+      },
+      "score_permuted": {
+        "n": 300,
+        "rate": 0.096667,
+        "slot0_rate": 0.0,
+        "logits_available": 300
+      },
+      "noul_labels_ab": {
+        "n": 300,
+        "rate": 0.843333,
+        "mean_abs_delta_p_true": 0.196195,
+        "logits_available": 300
+      },
+      "noul_choice_ab": {
+        "n": 300,
+        "rate": 0.533333,
+        "logits_available": 300
+      }
+    },
+    "bench_en": {
+      "single_question": {
+        "n": 870,
+        "rate": 1.0,
+        "logits_available": 870
+      },
+      "score_reversed": {
+        "n": 290,
+        "rate": 0.003448,
+        "slot0_rate": 0.0,
+        "logits_available": 290
+      },
+      "score_permuted": {
+        "n": 290,
+        "rate": 0.003448,
+        "slot0_rate": 0.0,
+        "logits_available": 290
+      },
+      "noul_labels_ab": {
+        "n": 290,
+        "rate": 0.910345,
+        "mean_abs_delta_p_true": 0.145321,
+        "logits_available": 290
+      },
+      "noul_choice_ab": {
+        "n": 290,
+        "rate": 0.796552,
+        "logits_available": 290
+      }
+    },
+    "snsk_jp_business": {
+      "single_question": {
+        "n": 48,
+        "rate": 1.0,
+        "logits_available": 48
+      },
+      "score_reversed": {
+        "n": 16,
+        "rate": 0.25,
+        "slot0_rate": 0.0,
+        "logits_available": 16
+      },
+      "score_permuted": {
+        "n": 16,
+        "rate": 0.125,
+        "slot0_rate": 0.0625,
+        "logits_available": 16
+      },
+      "noul_labels_ab": {
+        "n": 16,
+        "rate": 0.6875,
+        "mean_abs_delta_p_true": 0.426281,
+        "logits_available": 16
+      },
+      "noul_choice_ab": {
+        "n": 16,
+        "rate": 0.4375,
+        "logits_available": 16
+      }
+    }
+  }
+}

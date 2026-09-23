@@ -1,0 +1,29 @@
+{
+  "files": {
+    "snsk/bench.py": "bb6b7cd840501c9985271de4503bf0bc0a61546efc755767d61a427c8a46c8af",
+    "snsk/evaluation_lock.json": "154451d125b7266ee35cf6a6152802e7a6c447f733620124b2f8f801b8ec96e2",
+    "snsk/laya.responses.jsonl": "d46d96f88fd72e4b04e69459152fcba6fe661b70e4c2f89edb38eb294902f2aa",
+    "snsk/pilot.answers.yaml": "0b6687b9846e40e3e26370000989e2cf25cc95cb8f82f52b9eaeeb039acd200c",
+    "snsk/pilot.questions.yaml": "3f5ba0416c69be77858b4014ac7eda1a03da93a671e64cc84c4fff3789ab08fa",
+    "snsk/run_config.json": "a63ab6224673d39aab538c942e529ef54622a400f5bf5ca84a099be475b71bb1",
+    "sokudan/bench_en.jsonl": "dcf62c360ceef05d199efd5a96cf5838caff583d42e3ddf8797708659e2b51c0",
+    "sokudan/bench_en.manifest.json": "b4f1a5470702e523ba14cfd57b033b9485f45e3353156030324bed34965a2b27",
+    "sokudan/bench_en.py": "83f685f7b8851dae09903e0aaeca4586f23900f68033ba1723f310d25c09043d",
+    "sokudan/bench_ja.jsonl": "08ed6d1d2c86a30eff4cd13ced6627210631c878526e478b2e7c6ad3d91f74f5",
+    "sokudan/bench_ja.manifest.json": "560f417efd7629220556ca5c749f6d6bbed30da5bd206ed205c5a95b71356c5c",
+    "sokudan/bench_ja.py": "17c627dd155a354ed26ab0896b56b45f7421e960d4265cb709fc164b4eda5c07"
+  },
+  "sources": {
+    "sokudan": {
+      "repo": "https://github.com/hiroki-abe-58/sokudan",
+      "commit": "e1bcfbb5884c43762d6f6ab6df5b78cc75746fb9",
+      "license": "CC BY 4.0",
+      "note": "Evaluation only. Do not train on these files."
+    },
+    "snsk": {
+      "repo": "https://github.com/snsk/jev-laya-japanese-business-benchmark",
+      "commit": "743e233f69e898f4d576f31b0ba4668df7f26765",
+      "note": "Questions, answers, scorer, and published Laya responses. Do not train on these files."
+    }
+  }
+}

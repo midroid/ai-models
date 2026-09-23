@@ -1,0 +1,12 @@
+{
+  "model_id": "convaiinnovations/laya-multilingual",
+  "revision": "82d57fc4f2d1be3d2caac494045f2ec51d0842f3",
+  "laya": "0.3.11",
+  "transformers": "5.17.0",
+  "torch": "2.14.0",
+  "python": "3.14.5",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "requested_device": "mps",
+  "device": "mps",
+  "dtype": "torch.float32"
+}

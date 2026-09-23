@@ -1,0 +1,2818 @@
+{
+  "groups": {
+    "choice": {
+      "planned": 36,
+      "valid": 36,
+      "passed": 15,
+      "api_errors": 0,
+      "invalid": 0,
+      "not_run": 0,
+      "pass_rate_valid": 0.4166666666666667,
+      "nll": 1.542281967683619
+    },
+    "score": {
+      "planned": 36,
+      "valid": 36,
+      "passed": 9,
+      "api_errors": 0,
+      "invalid": 0,
+      "not_run": 0,
+      "pass_rate_valid": 0.25,
+      "mae": 1.1113416666666667
+    },
+    "noul": {
+      "planned": 36,
+      "valid": 36,
+      "passed": 18,
+      "api_errors": 0,
+      "invalid": 0,
+      "not_run": 0,
+      "pass_rate_valid": 0.5,
+      "brier": 0.4685289266666667
+    },
+    "composite": {
+      "planned": 12,
+      "valid": 12,
+      "passed": 3,
+      "api_errors": 0,
+      "invalid": 0,
+      "not_run": 0,
+      "pass_rate_valid": 0.25,
+      "atomic_passed": 3,
+      "action_passed": 3
+    }
+  },
+  "evaluated": [
+    {
+      "case_id": "C01",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "next_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "issue_order",
+          "expected": "obtain_approval",
+          "nll": 2.2595256035335987
+        }
+      }
+    },
+    {
+      "case_id": "C01",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "next_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "issue_order",
+          "expected": "obtain_approval",
+          "nll": 2.2595256035335987
+        }
+      }
+    },
+    {
+      "case_id": "C01",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "next_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "issue_order",
+          "expected": "obtain_approval",
+          "nll": 2.2595256035335987
+        }
+      }
+    },
+    {
+      "case_id": "C02",
+      "group": "choice",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deal_status": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "declined",
+          "expected": "declined",
+          "nll": 0.024292692569044587
+        }
+      }
+    },
+    {
+      "case_id": "C02",
+      "group": "choice",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deal_status": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "declined",
+          "expected": "declined",
+          "nll": 0.024292692569044587
+        }
+      }
+    },
+    {
+      "case_id": "C02",
+      "group": "choice",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deal_status": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "declined",
+          "expected": "declined",
+          "nll": 0.024292692569044587
+        }
+      }
+    },
+    {
+      "case_id": "C03",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "ledger_year": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "fiscal_2026",
+          "expected": "fiscal_2025",
+          "nll": 1.1721511920029801
+        }
+      }
+    },
+    {
+      "case_id": "C03",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "ledger_year": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "fiscal_2026",
+          "expected": "fiscal_2025",
+          "nll": 1.1721511920029801
+        }
+      }
+    },
+    {
+      "case_id": "C03",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "ledger_year": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "fiscal_2026",
+          "expected": "fiscal_2025",
+          "nll": 1.1721511920029801
+        }
+      }
+    },
+    {
+      "case_id": "C04",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "shipment_quantity": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "wait_for_paper",
+          "expected": "ship_70",
+          "nll": 2.565249402470539
+        }
+      }
+    },
+    {
+      "case_id": "C04",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "shipment_quantity": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "wait_for_paper",
+          "expected": "ship_70",
+          "nll": 2.565249402470539
+        }
+      }
+    },
+    {
+      "case_id": "C04",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "shipment_quantity": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "wait_for_paper",
+          "expected": "ship_70",
+          "nll": 2.565249402470539
+        }
+      }
+    },
+    {
+      "case_id": "C05",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "intake_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "implementation_team",
+          "expected": "change_control",
+          "nll": 4.261580481598014
+        }
+      }
+    },
+    {
+      "case_id": "C05",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "intake_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "implementation_team",
+          "expected": "change_control",
+          "nll": 4.261580481598014
+        }
+      }
+    },
+    {
+      "case_id": "C05",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "intake_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "implementation_team",
+          "expected": "change_control",
+          "nll": 4.261580481598014
+        }
+      }
+    },
+    {
+      "case_id": "C06",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "disposition": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "inspect_first",
+          "expected": "ship_with_record",
+          "nll": 3.0118616554838744
+        }
+      }
+    },
+    {
+      "case_id": "C06",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "disposition": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "inspect_first",
+          "expected": "ship_with_record",
+          "nll": 3.0118616554838744
+        }
+      }
+    },
+    {
+      "case_id": "C06",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "disposition": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "inspect_first",
+          "expected": "ship_with_record",
+          "nll": 3.0118616554838744
+        }
+      }
+    },
+    {
+      "case_id": "C07",
+      "group": "choice",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "investigation_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "collect_evidence",
+          "expected": "collect_evidence",
+          "nll": 0.19079737527499832
+        }
+      }
+    },
+    {
+      "case_id": "C07",
+      "group": "choice",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "investigation_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "collect_evidence",
+          "expected": "collect_evidence",
+          "nll": 0.19079737527499832
+        }
+      }
+    },
+    {
+      "case_id": "C07",
+      "group": "choice",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "investigation_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "collect_evidence",
+          "expected": "collect_evidence",
+          "nll": 0.19079737527499832
+        }
+      }
+    },
+    {
+      "case_id": "C08",
+      "group": "choice",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "request_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "defect_and_change",
+          "expected": "defect_and_change",
+          "nll": 0.5428324199010772
+        }
+      }
+    },
+    {
+      "case_id": "C08",
+      "group": "choice",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "request_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "defect_and_change",
+          "expected": "defect_and_change",
+          "nll": 0.5428324199010772
+        }
+      }
+    },
+    {
+      "case_id": "C08",
+      "group": "choice",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "request_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "defect_and_change",
+          "expected": "defect_and_change",
+          "nll": 0.5428324199010772
+        }
+      }
+    },
+    {
+      "case_id": "C09",
+      "group": "choice",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "response_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "share_with_prime",
+          "expected": "share_with_prime",
+          "nll": 0.22364367635589208
+        }
+      }
+    },
+    {
+      "case_id": "C09",
+      "group": "choice",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "response_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "share_with_prime",
+          "expected": "share_with_prime",
+          "nll": 0.22364367635589208
+        }
+      }
+    },
+    {
+      "case_id": "C09",
+      "group": "choice",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "response_route": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "share_with_prime",
+          "expected": "share_with_prime",
+          "nll": 0.22364367635589208
+        }
+      }
+    },
+    {
+      "case_id": "C10",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "submission_deadline": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "may_01",
+          "expected": "april_28",
+          "nll": 2.1210972169486686
+        }
+      }
+    },
+    {
+      "case_id": "C10",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "submission_deadline": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "may_01",
+          "expected": "april_28",
+          "nll": 2.1210972169486686
+        }
+      }
+    },
+    {
+      "case_id": "C10",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "submission_deadline": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "may_01",
+          "expected": "april_28",
+          "nll": 2.1210972169486686
+        }
+      }
+    },
+    {
+      "case_id": "C11",
+      "group": "choice",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "gate_decision": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "proceed_with_tracking",
+          "expected": "proceed_with_tracking",
+          "nll": 0.7776163371863952
+        }
+      }
+    },
+    {
+      "case_id": "C11",
+      "group": "choice",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "gate_decision": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "proceed_with_tracking",
+          "expected": "proceed_with_tracking",
+          "nll": 0.7776163371863952
+        }
+      }
+    },
+    {
+      "case_id": "C11",
+      "group": "choice",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "gate_decision": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "proceed_with_tracking",
+          "expected": "proceed_with_tracking",
+          "nll": 0.7776163371863952
+        }
+      }
+    },
+    {
+      "case_id": "C12",
+      "group": "choice",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "purchasing_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "choose_lower_service_quote",
+          "expected": "complete_service_procurement",
+          "nll": 1.3567355588783463
+        }
+      }
+    },
+    {
+      "case_id": "C12",
+      "group": "choice",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "purchasing_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "choose_lower_service_quote",
+          "expected": "complete_service_procurement",
+          "nll": 1.3567355588783463
+        }
+      }
+    },
+    {
+      "case_id": "C12",
+      "group": "choice",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "purchasing_action": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "choose_lower_service_quote",
+          "expected": "complete_service_procurement",
+          "nll": 1.3567355588783463
+        }
+      }
+    },
+    {
+      "case_id": "S01",
+      "group": "score",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "prevention_specificity": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=1.3838、表示確率の加重平均=1.3837。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.3838,
+          "expected": 1,
+          "absolute_error": 0.3837999999999999
+        }
+      }
+    },
+    {
+      "case_id": "S01",
+      "group": "score",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "prevention_specificity": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=1.3838、表示確率の加重平均=1.3837。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.3838,
+          "expected": 1,
+          "absolute_error": 0.3837999999999999
+        }
+      }
+    },
+    {
+      "case_id": "S01",
+      "group": "score",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "prevention_specificity": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=1.3838、表示確率の加重平均=1.3837。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.3838,
+          "expected": 1,
+          "absolute_error": 0.3837999999999999
+        }
+      }
+    },
+    {
+      "case_id": "S02",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "operational_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.1712、表示確率の加重平均=2.1714。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1712,
+          "expected": 4,
+          "absolute_error": 1.8288000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S02",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "operational_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.1712、表示確率の加重平均=2.1714。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1712,
+          "expected": 4,
+          "absolute_error": 1.8288000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S02",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "operational_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.1712、表示確率の加重平均=2.1714。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1712,
+          "expected": 4,
+          "absolute_error": 1.8288000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S03",
+      "group": "score",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "handover_completeness": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.7357、表示確率の加重平均=1.7358。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7357,
+          "expected": 2,
+          "absolute_error": 0.2643
+        }
+      }
+    },
+    {
+      "case_id": "S03",
+      "group": "score",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "handover_completeness": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.7357、表示確率の加重平均=1.7358。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7357,
+          "expected": 2,
+          "absolute_error": 0.2643
+        }
+      }
+    },
+    {
+      "case_id": "S03",
+      "group": "score",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "handover_completeness": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.7357、表示確率の加重平均=1.7358。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7357,
+          "expected": 2,
+          "absolute_error": 0.2643
+        }
+      }
+    },
+    {
+      "case_id": "S04",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "rollout_verification_maturity": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.2007、表示確率の加重平均=2.2006。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2007,
+          "expected": 3,
+          "absolute_error": 0.7993000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S04",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "rollout_verification_maturity": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.2007、表示確率の加重平均=2.2006。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2007,
+          "expected": 3,
+          "absolute_error": 0.7993000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S04",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "rollout_verification_maturity": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.2007、表示確率の加重平均=2.2006。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2007,
+          "expected": 3,
+          "absolute_error": 0.7993000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S05",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "reproduction_evidence": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.2854、表示確率の加重平均=2.2856。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2854,
+          "expected": 4,
+          "absolute_error": 1.7146
+        }
+      }
+    },
+    {
+      "case_id": "S05",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "reproduction_evidence": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.2854、表示確率の加重平均=2.2856。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2854,
+          "expected": 4,
+          "absolute_error": 1.7146
+        }
+      }
+    },
+    {
+      "case_id": "S05",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "reproduction_evidence": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.2854、表示確率の加重平均=2.2856。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.2854,
+          "expected": 4,
+          "absolute_error": 1.7146
+        }
+      }
+    },
+    {
+      "case_id": "S06",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "recovery_procedure_readiness": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.9109、表示確率の加重平均=1.9110。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9109,
+          "expected": 0,
+          "absolute_error": 1.9109
+        }
+      }
+    },
+    {
+      "case_id": "S06",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "recovery_procedure_readiness": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.9109、表示確率の加重平均=1.9110。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9109,
+          "expected": 0,
+          "absolute_error": 1.9109
+        }
+      }
+    },
+    {
+      "case_id": "S06",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "recovery_procedure_readiness": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.9109、表示確率の加重平均=1.9110。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9109,
+          "expected": 0,
+          "absolute_error": 1.9109
+        }
+      }
+    },
+    {
+      "case_id": "S07",
+      "group": "score",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deadline_overrun": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=2.1839、表示確率の加重平均=2.1838。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1839,
+          "expected": 2,
+          "absolute_error": 0.18389999999999995
+        }
+      }
+    },
+    {
+      "case_id": "S07",
+      "group": "score",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deadline_overrun": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=2.1839、表示確率の加重平均=2.1838。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1839,
+          "expected": 2,
+          "absolute_error": 0.18389999999999995
+        }
+      }
+    },
+    {
+      "case_id": "S07",
+      "group": "score",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "deadline_overrun": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "返却Score=2.1839、表示確率の加重平均=2.1838。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.1839,
+          "expected": 2,
+          "absolute_error": 0.18389999999999995
+        }
+      }
+    },
+    {
+      "case_id": "S08",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "adoption_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.0796,
+          "expected": 1,
+          "absolute_error": 1.0796000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S08",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "adoption_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.0796,
+          "expected": 1,
+          "absolute_error": 1.0796000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S08",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "adoption_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.0796,
+          "expected": 1,
+          "absolute_error": 1.0796000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S09",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_test_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.2817,
+          "expected": 3,
+          "absolute_error": 0.7183000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S09",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_test_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.2817,
+          "expected": 3,
+          "absolute_error": 0.7183000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S09",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_test_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.2817,
+          "expected": 3,
+          "absolute_error": 0.7183000000000002
+        }
+      }
+    },
+    {
+      "case_id": "S10",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "containment_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.0006、表示確率の加重平均=2.0008。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.0006,
+          "expected": 3,
+          "absolute_error": 0.9994000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S10",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "containment_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.0006、表示確率の加重平均=2.0008。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.0006,
+          "expected": 3,
+          "absolute_error": 0.9994000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S10",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "containment_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=2.0006、表示確率の加重平均=2.0008。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.0006,
+          "expected": 3,
+          "absolute_error": 0.9994000000000001
+        }
+      }
+    },
+    {
+      "case_id": "S11",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "finding_closure_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7914、表示確率の加重平均=1.7913。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7914,
+          "expected": 3,
+          "absolute_error": 1.2086
+        }
+      }
+    },
+    {
+      "case_id": "S11",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "finding_closure_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7914、表示確率の加重平均=1.7913。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7914,
+          "expected": 3,
+          "absolute_error": 1.2086
+        }
+      }
+    },
+    {
+      "case_id": "S11",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "finding_closure_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7914、表示確率の加重平均=1.7913。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7914,
+          "expected": 3,
+          "absolute_error": 1.2086
+        }
+      }
+    },
+    {
+      "case_id": "S12",
+      "group": "score",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "additional_work_agreement": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7554、表示確率の加重平均=1.7556。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7554,
+          "expected": 4,
+          "absolute_error": 2.2446
+        }
+      }
+    },
+    {
+      "case_id": "S12",
+      "group": "score",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "additional_work_agreement": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7554、表示確率の加重平均=1.7556。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7554,
+          "expected": 4,
+          "absolute_error": 2.2446
+        }
+      }
+    },
+    {
+      "case_id": "S12",
+      "group": "score",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "additional_work_agreement": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [
+            "返却Score=1.7554、表示確率の加重平均=1.7556。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.7554,
+          "expected": 4,
+          "absolute_error": 2.2446
+        }
+      }
+    },
+    {
+      "case_id": "N01",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "specification_change_requested": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9994,
+          "brier": 3.6000000000005394e-07
+        }
+      }
+    },
+    {
+      "case_id": "N01",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "specification_change_requested": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9994,
+          "brier": 3.6000000000005394e-07
+        }
+      }
+    },
+    {
+      "case_id": "N01",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "specification_change_requested": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9994,
+          "brier": 3.6000000000005394e-07
+        }
+      }
+    },
+    {
+      "case_id": "N02",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_defect": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9428,
+          "brier": 0.88887184
+        }
+      }
+    },
+    {
+      "case_id": "N02",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_defect": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9428,
+          "brier": 0.88887184
+        }
+      }
+    },
+    {
+      "case_id": "N02",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "acceptance_defect": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9428,
+          "brier": 0.88887184
+        }
+      }
+    },
+    {
+      "case_id": "N03",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "duplicate_order": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9941,
+          "brier": 3.481000000000019e-05
+        }
+      }
+    },
+    {
+      "case_id": "N03",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "duplicate_order": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9941,
+          "brier": 3.481000000000019e-05
+        }
+      }
+    },
+    {
+      "case_id": "N03",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "duplicate_order": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9941,
+          "brier": 3.481000000000019e-05
+        }
+      }
+    },
+    {
+      "case_id": "N04",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "impact_review_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9926,
+          "brier": 5.475999999999944e-05
+        }
+      }
+    },
+    {
+      "case_id": "N04",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "impact_review_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9926,
+          "brier": 5.475999999999944e-05
+        }
+      }
+    },
+    {
+      "case_id": "N04",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "impact_review_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9926,
+          "brier": 5.475999999999944e-05
+        }
+      }
+    },
+    {
+      "case_id": "N05",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "vehicle_test_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9486,
+          "brier": 0.89984196
+        }
+      }
+    },
+    {
+      "case_id": "N05",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "vehicle_test_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9486,
+          "brier": 0.89984196
+        }
+      }
+    },
+    {
+      "case_id": "N05",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "vehicle_test_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9486,
+          "brier": 0.89984196
+        }
+      }
+    },
+    {
+      "case_id": "N06",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "approved_image_match": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9894,
+          "brier": 0.9789123599999999
+        }
+      }
+    },
+    {
+      "case_id": "N06",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "approved_image_match": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9894,
+          "brier": 0.9789123599999999
+        }
+      }
+    },
+    {
+      "case_id": "N06",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "approved_image_match": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9894,
+          "brier": 0.9789123599999999
+        }
+      }
+    },
+    {
+      "case_id": "N07",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "additional_power_test_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9734,
+          "brier": 0.0007075599999999977
+        }
+      }
+    },
+    {
+      "case_id": "N07",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "additional_power_test_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9734,
+          "brier": 0.0007075599999999977
+        }
+      }
+    },
+    {
+      "case_id": "N07",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "additional_power_test_required": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9734,
+          "brier": 0.0007075599999999977
+        }
+      }
+    },
+    {
+      "case_id": "N08",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "permanent_fix_verified": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9748,
+          "brier": 0.95023504
+        }
+      }
+    },
+    {
+      "case_id": "N08",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "permanent_fix_verified": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9748,
+          "brier": 0.95023504
+        }
+      }
+    },
+    {
+      "case_id": "N08",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "permanent_fix_verified": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9748,
+          "brier": 0.95023504
+        }
+      }
+    },
+    {
+      "case_id": "N09",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_agreed": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9888,
+          "brier": 0.00012543999999999972
+        }
+      }
+    },
+    {
+      "case_id": "N09",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_agreed": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9888,
+          "brier": 0.00012543999999999972
+        }
+      }
+    },
+    {
+      "case_id": "N09",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_agreed": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9888,
+          "brier": 0.00012543999999999972
+        }
+      }
+    },
+    {
+      "case_id": "N10",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "production_process_evaluated": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9585,
+          "brier": 0.9187222500000001
+        }
+      }
+    },
+    {
+      "case_id": "N10",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "production_process_evaluated": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9585,
+          "brier": 0.9187222500000001
+        }
+      }
+    },
+    {
+      "case_id": "N10",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "production_process_evaluated": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9585,
+          "brier": 0.9187222500000001
+        }
+      }
+    },
+    {
+      "case_id": "N11",
+      "group": "noul",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "maintenance_in_scope": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9895,
+          "brier": 0.9791102500000001
+        }
+      }
+    },
+    {
+      "case_id": "N11",
+      "group": "noul",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "maintenance_in_scope": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9895,
+          "brier": 0.9791102500000001
+        }
+      }
+    },
+    {
+      "case_id": "N11",
+      "group": "noul",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "maintenance_in_scope": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9895,
+          "brier": 0.9791102500000001
+        }
+      }
+    },
+    {
+      "case_id": "N12",
+      "group": "noul",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "current_period_declined": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9243,
+          "brier": 0.005730489999999999
+        }
+      }
+    },
+    {
+      "case_id": "N12",
+      "group": "noul",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "current_period_declined": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9243,
+          "brier": 0.005730489999999999
+        }
+      }
+    },
+    {
+      "case_id": "N12",
+      "group": "noul",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "current_period_declined": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9243,
+          "brier": 0.005730489999999999
+        }
+      }
+    },
+    {
+      "case_id": "X01",
+      "group": "composite",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "request_kind": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "delivery_change",
+          "expected": "acceptance_date_advance",
+          "nll": 1.268689119045627
+        },
+        "response_urgency": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 1.7008,
+          "expected": 3,
+          "absolute_error": 1.2992
+        },
+        "inspection_completed": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9958,
+          "brier": 0.9916176400000001
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "manual_review",
+      "action_pass": false
+    },
+    {
+      "case_id": "X01",
+      "group": "composite",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "request_kind": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "delivery_change",
+          "expected": "acceptance_date_advance",
+          "nll": 1.268689119045627
+        },
+        "response_urgency": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 1.7008,
+          "expected": 3,
+          "absolute_error": 1.2992
+        },
+        "inspection_completed": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9958,
+          "brier": 0.9916176400000001
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "manual_review",
+      "action_pass": false
+    },
+    {
+      "case_id": "X01",
+      "group": "composite",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "request_kind": {
+          "type": "choice",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": "delivery_change",
+          "expected": "acceptance_date_advance",
+          "nll": 1.268689119045627
+        },
+        "response_urgency": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 1.7008,
+          "expected": 3,
+          "absolute_error": 1.2992
+        },
+        "inspection_completed": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.9958,
+          "brier": 0.9916176400000001
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "manual_review",
+      "action_pass": false
+    },
+    {
+      "case_id": "X02",
+      "group": "composite",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "change_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "inspection_process",
+          "expected": "inspection_process",
+          "nll": 0.3795050064386327
+        },
+        "verification_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.1981,
+          "expected": 4,
+          "absolute_error": 1.8018999999999998
+        },
+        "production_approval_recorded": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9804,
+          "brier": 0.0003841599999999981
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "hold_for_verification_completion",
+      "action_pass": false
+    },
+    {
+      "case_id": "X02",
+      "group": "composite",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "change_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "inspection_process",
+          "expected": "inspection_process",
+          "nll": 0.3795050064386327
+        },
+        "verification_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.1981,
+          "expected": 4,
+          "absolute_error": 1.8018999999999998
+        },
+        "production_approval_recorded": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9804,
+          "brier": 0.0003841599999999981
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "hold_for_verification_completion",
+      "action_pass": false
+    },
+    {
+      "case_id": "X02",
+      "group": "composite",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "change_class": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "inspection_process",
+          "expected": "inspection_process",
+          "nll": 0.3795050064386327
+        },
+        "verification_stage": {
+          "type": "score",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": 2.1981,
+          "expected": 4,
+          "absolute_error": 1.8018999999999998
+        },
+        "production_approval_recorded": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9804,
+          "brier": 0.0003841599999999981
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "hold_for_verification_completion",
+      "action_pass": false
+    },
+    {
+      "case_id": "X03",
+      "group": "composite",
+      "repeat": 1,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "work_type": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "firmware_update",
+          "expected": "firmware_update",
+          "nll": 0.583396316600826
+        },
+        "current_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.9945、表示確率の加重平均=1.9942。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9945,
+          "expected": 2,
+          "absolute_error": 0.00550000000000006
+        },
+        "update_authorized": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.981,
+          "brier": 0.962361
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "coordinate_approved_update",
+      "action_pass": false
+    },
+    {
+      "case_id": "X03",
+      "group": "composite",
+      "repeat": 2,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "work_type": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "firmware_update",
+          "expected": "firmware_update",
+          "nll": 0.583396316600826
+        },
+        "current_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.9945、表示確率の加重平均=1.9942。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9945,
+          "expected": 2,
+          "absolute_error": 0.00550000000000006
+        },
+        "update_authorized": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.981,
+          "brier": 0.962361
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "coordinate_approved_update",
+      "action_pass": false
+    },
+    {
+      "case_id": "X03",
+      "group": "composite",
+      "repeat": 3,
+      "status": "fail",
+      "passed": false,
+      "questions": {
+        "work_type": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。"
+          ],
+          "predicted": "firmware_update",
+          "expected": "firmware_update",
+          "nll": 0.583396316600826
+        },
+        "current_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は0.999900です。丸めを仮定すると合計1と整合します。",
+            "返却Score=1.9945、表示確率の加重平均=1.9942。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 1.9945,
+          "expected": 2,
+          "absolute_error": 0.00550000000000006
+        },
+        "update_authorized": {
+          "type": "noul",
+          "valid": true,
+          "passed": false,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": false,
+          "probability": 0.981,
+          "brier": 0.962361
+        }
+      },
+      "atomic_pass": false,
+      "derived_action": "coordinate_approved_update",
+      "action_pass": false
+    },
+    {
+      "case_id": "X04",
+      "group": "composite",
+      "repeat": 1,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_scope": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "original_order_only",
+          "expected": "original_order_only",
+          "nll": 0.8269071707394695
+        },
+        "remaining_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.3750、表示確率の加重平均=2.3752。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.375,
+          "expected": 2,
+          "absolute_error": 0.375
+        },
+        "operations_handover_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9399,
+          "brier": 0.003612010000000005
+        }
+      },
+      "atomic_pass": true,
+      "derived_action": "record_base_acceptance_and_track_workaround",
+      "action_pass": true
+    },
+    {
+      "case_id": "X04",
+      "group": "composite",
+      "repeat": 2,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_scope": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "original_order_only",
+          "expected": "original_order_only",
+          "nll": 0.8269071707394695
+        },
+        "remaining_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.3750、表示確率の加重平均=2.3752。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.375,
+          "expected": 2,
+          "absolute_error": 0.375
+        },
+        "operations_handover_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9399,
+          "brier": 0.003612010000000005
+        }
+      },
+      "atomic_pass": true,
+      "derived_action": "record_base_acceptance_and_track_workaround",
+      "action_pass": true
+    },
+    {
+      "case_id": "X04",
+      "group": "composite",
+      "repeat": 3,
+      "status": "pass",
+      "passed": true,
+      "questions": {
+        "acceptance_scope": {
+          "type": "choice",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": "original_order_only",
+          "expected": "original_order_only",
+          "nll": 0.8269071707394695
+        },
+        "remaining_impact": {
+          "type": "score",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [
+            "表示確率の合計は1.000100です。丸めを仮定すると合計1と整合します。",
+            "返却Score=2.3750、表示確率の加重平均=2.3752。差は丸めを仮定した整合範囲内です。採点には返却Scoreを使用しました。"
+          ],
+          "predicted": 2.375,
+          "expected": 2,
+          "absolute_error": 0.375
+        },
+        "operations_handover_complete": {
+          "type": "noul",
+          "valid": true,
+          "passed": true,
+          "error": null,
+          "notes": [],
+          "predicted": true,
+          "expected": true,
+          "probability": 0.9399,
+          "brier": 0.003612010000000005
+        }
+      },
+      "atomic_pass": true,
+      "derived_action": "record_base_acceptance_and_track_workaround",
+      "action_pass": true
+    }
+  ],
+  "planned": 120,
+  "numerical_note_count": 57,
+  "total_score": {
+    "points": 36.904761904761905,
+    "maximum": 100,
+    "single_weight": 1,
+    "composite_weight": 1.5,
+    "weight_sum": 42.0,
+    "earned_weight": 15.5,
+    "provisional": false,
+    "formula": "100 * sum(case_weight * case_pass_count / repeats) / sum(case_weight)"
+  },
+  "recorded": 120,
+  "valid": 120,
+  "observed_models": [
+    "laya-rl-agent"
+  ],
+  "latency_median": 0.02586614599567838,
+  "latency_p95": 0.09229271936346775,
+  "latency_count": 120,
+  "input_tokens": 49986,
+  "output_tokens": 0,
+  "missing_usage": 0,
+  "estimated_cost_usd": 0.002099412,
+  "cost_observed_tokens_usd": 0.002099412,
+  "stable_questions": 48,
+  "stability_eligible": 48,
+  "http_attempts": 0,
+  "retry_attempts": 0,
+  "answers_identical_across_repeats": true,
+  "bootstrap": {
+    "samples": 1000,
+    "seed": 2026,
+    "unit": "case",
+    "percentile_2_5": 21.84,
+    "percentile_97_5": 52.38
+  },
+  "checkpoint": "convaiinnovations/laya-multilingual"
+}

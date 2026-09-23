@@ -72,3 +72,21 @@ uv run python -m src.smoke
 | 006 | language | mixtral | done | Mixtral-style top-2 mixture of experts on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds dense and 2.5 minutes for the mixture | [experiments/language/006-mixtral](experiments/language/006-mixtral) |
 | 007 | language | deepseek-moe | done | DeepSeekMoE shared expert and fine-grained router on Tiny Shakespeare | laptop / MPS, smoke plus about 2.5 minutes Mixtral and 4 minutes DeepSeekMoE | [experiments/language/007-deepseek-moe](experiments/language/007-deepseek-moe) |
 | 008 | language | mla | done | Multi-head latent attention versus multi-head attention on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds per mode | [experiments/language/008-mla](experiments/language/008-mla) |
+
+## Fine-tuning
+
+These projects evaluate and later fine-tune an existing checkpoint. They are separate from the numbered from-scratch language experiments above.
+
+From `experiments/finetune/laya-jp`:
+
+```bash
+uv sync
+USE_TF=0 uv run python -m laya_jp.eval_sokudan
+USE_TF=0 uv run python -m laya_jp.eval_snsk
+USE_TF=0 uv run python -m laya_jp.diagnostics
+USE_TF=0 uv run python -m laya_jp.report
+```
+
+| name | status | goal | compute | folder |
+| --- | --- | --- | --- | --- |
+| laya-jp | baseline | Japanese decision baseline for laya-multilingual, original checkpoint first | laptop / MPS, download plus a few minutes | [experiments/finetune/laya-jp](experiments/finetune/laya-jp) |

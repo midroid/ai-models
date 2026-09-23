@@ -1,0 +1,23 @@
+{
+  "frozen_at": "2026-09-21T02:31:26.288872+00:00",
+  "benchmark_id": "jev_jp_business_pilot",
+  "dataset_version": "0.3.0",
+  "case_count": 40,
+  "atomic_question_count": 48,
+  "model": "jev-1.13.0",
+  "repeats": 3,
+  "policy": {
+    "single_weight": 1,
+    "composite_weight": 1.5,
+    "score_tolerance": 0.5,
+    "noul_threshold": 0.5,
+    "post_result_fixture_tuning": false
+  },
+  "hashes": {
+    "pilot.questions.yaml": "3f5ba0416c69be77858b4014ac7eda1a03da93a671e64cc84c4fff3789ab08fa",
+    "pilot.answers.yaml": "0b6687b9846e40e3e26370000989e2cf25cc95cb8f82f52b9eaeeb039acd200c",
+    "run_config.json": "a63ab6224673d39aab538c942e529ef54622a400f5bf5ca84a099be475b71bb1",
+    "bench.py": "bb6b7cd840501c9985271de4503bf0bc0a61546efc755767d61a427c8a46c8af",
+    "report_template.html": "1fc65b9ef2ac117c54c2d971835593337192a9eedf18f8649c51c1747526277d"
+  }
+}

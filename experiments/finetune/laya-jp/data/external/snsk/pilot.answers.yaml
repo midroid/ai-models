@@ -1,0 +1,511 @@
+schema_version: "1.0"
+benchmark_id: jev_jp_business_pilot
+version: "0.3.0"
+visibility: evaluator_only
+warning: このファイルをモデルに送信しない。正解と理由は作問者の想定であり、Jevの実測出力ではない。
+label_status: author_reviewed_pending_independent_review
+scoring:
+  choice:
+    primary: 選択肢キーの完全一致率。
+    secondary: 正解選択肢の確率を使った負の対数尤度。
+    formula: "NLL = -ln(max(probabilities[expected_choice], 1e-12))"
+  score:
+    primary: 実数のscoreと正解段階との差の絶対値を平均したMAE。小さいほど良い。
+    formula: "MAE = mean(abs(score - target_level))"
+    diagnostic_pass: "abs(score - target_level) <= 0.5"
+    diagnostic_note: 許容差0.5は試作用の便宜的基準であり、公式推奨値でも実務で検証済みの閾値でもない。
+    secondary: 段階ごとの確率分布も保存する。同じ平均値でも分布は異なる。
+  noul:
+    primary: 真偽の正解ラベルに対するBrierスコア。小さいほど良い。
+    formula: "Brier = mean((noul - int(expected_boolean)) ** 2)"
+    secondary: "分類正解率。noul >= 0.5をtrue、noul < 0.5をfalseとする。"
+    note: |
+      falseは各問の命題と基準に対するラベル。情報不足を常にfalse扱いする共通ルールではない。
+      正解確率として0.95などを人手で割り当てない。ラベルは真偽、モデル出力は確率として別に扱う。
+  composite:
+    atomic_pass: Choiceの一致、Scoreの許容差、Noulの分類一致がすべて成立すること。
+    derived_action_pass: 採点側の合成処理が想定業務アクションと一致すること。
+    case_pass: atomic_passとderived_action_passの両方が成立すること。
+  aggregation: |
+    Choice、Score、Noul、複合の4群を別々に報告し、単位の違う指標を単純平均しない。
+    型別指標とは別に、各問の診断用合格率から100点満点の総合点を求める。
+    重みは単独1、複合1.5。総合点は100 × Σ(重み × 各問の合格率) ÷ 42。
+    40ケース、48個の型付き判断。各複合ケースの内訳はChoice・Score・Noul各1個。
+    回答欠落、型不正、値の範囲外はinvalidとして別集計し、診断用の合否では不合格とする。
+    数値指標は有効回答数を分母として併記し、invalidを除外しただけの高成績を比較に使わない。
+  threshold_note: 分類用0.5と複合用の閾値は試作の固定値。業務自動化の安全性や有効性を示す値ではない。
+answers:
+  C01:
+    next_action:
+      expected_choice: obtain_approval
+      evidence:
+        - 税込120万円であり、100万円以上の承認条件に該当する。
+        - 本部長のシステム承認は未承認。
+        - チャットの了解はシステム承認の代わりにならず、例外もない。
+      rationale: 根回しや本部長の了解と、規程上必要な承認手続の完了を区別する。見積書の不備ではない。
+      likely_error: 上位者の「進めておいてください」を正式承認として即時発注する。
+  C02:
+    deal_status:
+      expected_choice: declined
+      evidence:
+        - 今期分につきましては見送らせていただければ幸いです。
+        - 次年度の予算が固まりましたら、改めて当方からご相談申し上げます。
+      rationale: 今期の見送りが示されている。過去の前向きな検討や次年度の可能性は、今期の継続検討を意味しない。
+      likely_error: 「前向き」「今後とも」に引かれて継続検討または受注にする。
+  C03:
+    ledger_year:
+      expected_choice: fiscal_2025
+      evidence:
+        - 検収日は令和８年３月３１日、すなわち2026年3月31日。
+        - 2025年度の最終日は2026年3月31日。
+        - 台帳の所属年度は検収日で決める。
+      rationale: 和暦を対応づけ、年度境界を適用する。4月の請求日と支払日はこの台帳の判断を変えない。
+      likely_error: 西暦2026年または4月の請求日を見て2026年度にする。
+  C04:
+    shipment_quantity:
+      expected_choice: ship_70
+      evidence:
+        - A-0910の有効版は第2版の総数60個で、納入済み20個を差し引くと残り40個。
+        - 別番号B-0910の確定30個は未納入なので、残り合計は40＋30＝70個。
+        - 月次内示150個は確定指示の納入残ではなく、紙の後送も出荷保留条件ではない。
+      rationale: 改訂を追加発注として足さず、指示番号ごとに有効な数量と消込みを対応させる。70個は両指示の社内出荷承認範囲内である。
+      likely_error: 最新の数量を追加数と読む、納入済み20個を再出荷する、別番号の30個を落とす、または月次内示を当日の残数にする。
+  C05:
+    intake_route:
+      expected_choice: change_control
+      evidence:
+        - 現行ソフトは合意済みの周期どおりに動作し、不具合報告はない。
+        - 新車種に合わせた通信周期変更で、別車種への影響審査は未実施。
+      rationale: 既存仕様の不履行ではなく新しい仕様要求なので、実装前に変更管理窓口で影響と検証範囲を審査する。
+      likely_error: 「パラメータだけ」「軽く」という表現を理由に、影響審査を省いて実装する。
+  C06:
+    disposition:
+      expected_choice: ship_with_record
+      evidence:
+        - 両者承認済みのS-18と、ロット・欠点の種類が一致する。
+        - 出荷実績0個に今回30個を加えても上限40個以内で、有効期限内。
+        - 指定された追加検査に全数合格し、ほかの不適合はない。
+      rationale: 提示された例外の全条件を満たすため、今回の30個は承認番号を残して出荷できる。例外を他ロットへ一般化はしない。
+      likely_error: 不良という語だけで廃棄・保留する、または承認範囲との照合を省く。
+  C07:
+    investigation_action:
+      expected_choice: collect_evidence
+      evidence:
+        - 現地個体、構成、電源測定値、ログが未取得。
+        - ソフト起因とハード起因の発言はいずれも推測である。
+      rationale: 原因を特定する証拠が不足しているため、初動ルールに従って現地情報を収集する。報告期限は断定の根拠にならない。
+      likely_error: 立場の強い発言を採用して責任を断定する、または本社で未再現なので異常なしにする。
+  C08:
+    request_class:
+      expected_choice: defect_and_change
+      evidence:
+        - 見積Q-14は別紙Dを範囲に含め、D-2はCSVのコード8文字と先頭ゼロ保持を定めている。
+        - 原価部門コードは承認済み項目になく、議事録では次期候補の見積依頼にとどまる。
+      rationale: 先頭ゼロの欠落は合意済みCSV仕様からの逸脱。原価部門コードは未合意の追加であり、同じ会議の依頼でも受付区分を分ける。
+      likely_error: 見積本文の「対象外」だけでCSV全部を範囲外にする、または議事録に登場した機能をすべて合意済みとする。
+  C09:
+    response_route:
+      expected_choice: share_with_prime
+      evidence:
+        - 追加要望は部署略称の表示で、現行画面でも業務は回っている。
+        - 通常の追加要望は受領を伝え、元請の変更窓口へ共有すると決められている。
+      rationale: 通常の変更受付に該当する。協力会社だけで日程を約束せず、受領連絡と共有を行う。
+      likely_error: 顧客の部門責任者の依頼だからと直接確約する、または商流外なので無視する。
+  C10:
+    submission_deadline:
+      expected_choice: april_28
+      evidence:
+        - 実施日は5月8日で、実施日自体を計算に含めない。
+        - 1工場営業日前は5月7日、2工場営業日前は4月28日。
+      rationale: 4月29日から5月6日をすべて除外した工場カレンダーで数えるため、締切は4月28日15:00。
+      likely_error: 一般的な平日や祝日だけで数えて、工場休業日の5月1日や5月6日を締切にする。
+  C11:
+    gate_decision:
+      expected_choice: proceed_with_tracking
+      evidence:
+        - 移行前必須3件は審査責任者の完了確認済みで、移行承認も登録済み。
+        - 残る2件は次回審査までの改善で、担当と期限が登録されている。
+      rationale: この工程移行の条件は満たしている。残件を隠したり完了扱いにせず、追跡を続けながら次工程へ進める。
+      likely_error: 「宿題付き」の表題だけで移行不可と判断する、または未完了指摘を消して進める。
+  C12:
+    purchasing_action:
+      expected_choice: complete_service_procurement
+      evidence:
+        - K-9の対象は指定制御基板1枚で、現地交換を含まない。
+        - 認定会社の交換なら保証を継続できるため、部品の指定から役務の独占を導けない。
+        - B社は必要な今週金曜日の作業条件を満たさず、適合候補の比較または現地交換の例外承認が残る。
+      rationale: 基板の一社購買は有効なまま、役務の調達方法を整えてから一式の決裁へ進める。安いが間に合わない見積は今回の適合候補ではない。
+      likely_error: 一式見積全体へ部品の例外を広げる、逆に基板まで相見積を取り直す、または納期を無視してB社を選ぶ。
+  S01:
+    prevention_specificity:
+      target_level: 1
+      evidence:
+        - 全員が気を引き締め、従来以上に十分注意して業務に当たります。
+      rationale: 注意と努力の表明はあるが、実行する手順や仕組みは示されていない。再発防止策への言及自体はあるため段階0でもない。
+      likely_error: 丁寧な謝罪や強い反省を、具体的な対策と混同して高く評価する。
+  S02:
+    operational_impact:
+      target_level: 4
+      evidence:
+        - すべての営業所で、新規注文が1件も受注システムに登録できない。
+        - 紙への記録では正式登録が完了せず、代替手段もない。
+      rationale: 対象の正式登録業務は全件停止している。閲覧画面の稼働や控えめな文面は、正式登録の完了可否を変えない。
+      likely_error: 「お手すき」「大ごとではない」や紙の控えを根拠に、影響を過小評価する。
+  S03:
+    handover_completeness:
+      target_level: 2
+      evidence:
+        - 2026年4月10日に5月分の発注見込みを確認する、という日付と実施事項がある。
+        - FAX受領当日中に電話する、という顧客固有の対応方法がある。
+        - 未了案件の「例の件」と資料の「いつもの場所」では対象を特定できない。
+      rationale: 必要4項目のうち2項目が充足している。前任者の押印では不足情報を補えない。
+      likely_error: 見出しが4つ存在することや引継ぎ完了印だけで、全項目を充足したと扱う。
+  S04:
+    rollout_verification_maturity:
+      target_level: 3
+      evidence:
+        - 対象3仕様の差分調査、個別検証、証跡保存が完了している。
+        - 品質保証部門の証跡レビューは未実施。
+      rationale: 検証と証跡は全対象分そろうが、最後の証跡レビューが未完了なので段階3。依頼の提出はレビュー完了ではない。
+      likely_error: 「横展開対応完了」という表題やレビュー依頼の提出を、最終レビュー完了と扱う。
+  S05:
+    reproduction_evidence:
+      target_level: 4
+      evidence:
+        - 現品の構成と条件が特定され、現行版5回中2回、旧版5回中0回の比較試験がある。
+        - 両版の各試行の結果とログが製番に対応づけられている。
+      rationale: 複数回の管理された試行と比較対象の証拠までそろっている。原因未確定でも、再現性の証拠の評価は段階4に該当する。
+      likely_error: 原因承認がないことを、再現記録の不足と混同して下げる。
+  S06:
+    recovery_procedure_readiness:
+      target_level: 0
+      evidence:
+        - 手順、注意点、成功確認方法がなく、特定のベテランへの問い合わせだけが記録されている。
+      rationale: 夜勤の保全当番が実行できる手順の記録がないため段階0。過去に熟練者が直した実績は手順の整備状況を補わない。
+      likely_error: 長年の運用実績やベテランの能力を、文書化された復旧手順の代わりとして評価する。
+  S07:
+    deadline_overrun:
+      target_level: 2
+      evidence:
+        - 評価対象は平均値ではなく最悪値である。
+        - 最悪値12.0ミリ秒は、11.0ミリ秒超かつ12.0ミリ秒以下の範囲。
+      rationale: 上限を含む段階2の条件に一致する。平均5.0ミリ秒はこの評価には使わない。
+      likely_error: 平均値で合格とする、またはちょうど12.0を12.0超の段階3に入れる。
+  S08:
+    adoption_stage:
+      target_level: 1
+      evidence:
+        - 全員が研修と練習用データの演習を終えている。
+        - 実際の受注は全件旧システムで、新システムの実業務実績は0件。
+      rationale: 操作体験は済んでいるが日常業務への利用は未開始なので段階1。翌週の計画を実績に含めない。
+      likely_error: 研修参加率や満足度を、日常業務への定着率と読み替える。
+  S09:
+    acceptance_test_stage:
+      target_level: 3
+      evidence:
+        - U23・U24は承認済みの次期送りなので、当期の対象はU01〜U22。
+        - U01〜U21は合格、U22も再試験で合格しており、当期全項目の合格記録がそろう。
+        - 責任者の既存確認はU01〜U21まで。RT-22を含む第3版への返信は資料受領と翌日の確認予定だけ。
+      rationale: 対象範囲の変更と再試験を反映すると全件合格だが、その全結果を覆う責任者確認はまだそろわないため段階3。
+      likely_error: 次期項目や解消済みの不合格を残件に数えて段階2にする、または受領連絡を結果確認として段階4にする。
+  S10:
+    containment_stage:
+      target_level: 3
+      evidence:
+        - 自社と販売会社の全対象在庫の必要処置が製番付きで報告されている。
+        - 品質保証担当による全製番と隔離記録の最終照合は未実施。
+      rationale: 全対象の処置報告まで進んでいるが、最終照合が残っているため段階3。
+      likely_error: 全社からの返事を、全製番の最終照合完了と同一視する。
+  S11:
+    finding_closure_stage:
+      target_level: 3
+      evidence:
+        - 修正反映と所定の再試験合格は記録されている。
+        - 設計責任者による証跡確認とクローズ承認は未実施。
+      rationale: 修正と再試験は終わっているが最終承認前なので段階3。赤札や備考の状態から正式完了を推測しない。
+      likely_error: 赤札の撤去や担当者の「対応済」という記載だけで段階4にする。
+  S12:
+    additional_work_agreement:
+      target_level: 4
+      evidence:
+        - Q-32は3帳票、90万円、10月15日で特定され、両権限者の100万円以下の範囲に収まる。
+        - 開発部長は同じQ-32を引き受け、条件だった作業枠の確保を通知している。
+        - 購買課長は枠の確保を確認しQ-32での実行を依頼しており、紙の後送も認められている。
+      rationale: 同じ改訂版の範囲・費用・納期について有効な両社承認があり、条件の充足も確認済みなので段階4。更新前の一覧は新しい合意を取り消さない。
+      likely_error: 旧見積120万円で権限超過とする、条件付き回答を後続確認なしのままと読む、または紙の未着だけで段階3に下げる。
+  N01:
+    specification_change_requested:
+      expected_boolean: true
+      evidence:
+        - 今回の発注分は新仕様の白色へ変更いただけますでしょうか。
+      rationale: 色仕様の変更依頼がある。価格・数量を変更しないという記載は、色仕様の変更を否定していない。
+      likely_error: 「差し支えない」「変更ございません」の部分だけを拾ってfalseにする。
+  N02:
+    acceptance_defect:
+      expected_boolean: false
+      evidence:
+        - 必要事項と添付書類は完備している。
+        - 承認者全員の本人認証付き電子承認が完了している。
+        - 電子承認が完了している場合、紙への押印は不要。
+      rationale: 提示された受理条件をすべて満たしている。旧書式の押印欄が空欄でも、規程上の不備にはならない。
+      likely_error: 押印欄の空欄を、日本の書類なら必ず不備だと判断する。
+  N03:
+    duplicate_order:
+      expected_boolean: true
+      evidence:
+        - 全角・半角を同一視すると、取引先・注文番号・商品コード・数量が一致する。
+        - 先ほどのメール注文と同一分です。追加ではありません。
+      rationale: 同一注文の再送という明示と識別情報が一致している。FAXとメールの経路の違いは別注文の証拠ではない。
+      likely_error: 表記や経路の違いに引かれて別注文とする、または「追加」という語だけで追加発注とする。
+  N04:
+    impact_review_required:
+      expected_boolean: true
+      evidence:
+        - 輸出向けB車は対象のD7版2.0を搭載し、影響なしの承認もない。
+      rationale: 調査対象は共通部品と版で決まり、仕向けや市場報告件数では除外できない。これは不具合発生の断定とは別の命題である。
+      likely_error: 輸出向けであることや不具合報告0件を根拠に、横展開調査の対象から外す。
+  N05:
+    vehicle_test_complete:
+      expected_boolean: false
+      evidence:
+        - 実車試験は0件で、客先立会い担当の結果確認もない。
+        - 台上の模擬環境試験は代替不可と明記されている。
+      rationale: 実車評価の完了条件を満たさない。社内確認印付きの成績書は台上試験に対するもの。
+      likely_error: 同じソフトの台上合格を実車評価の完了と読み替える。
+  N06:
+    approved_image_match:
+      expected_boolean: false
+      evidence:
+        - 承認済み識別値はIMG-A17、現在の書込みデータはIMG-B08。
+        - 版名は同じでも識別値が異なれば同一扱いしないというルールがある。
+      rationale: 識別値が異なるため、提示ルール上の同一性は成立しない。ソース変更なしという説明では置き換えられない。
+      likely_error: R2.3という版名やソース未変更だけを比較し、同一と判定する。
+  N07:
+    additional_power_test_required:
+      expected_boolean: true
+      evidence:
+        - 電源部品をP1からP2へ変更し、評価免除承認はない。
+        - ファームウェア変更の有無にかかわらず追加評価すると規定されている。
+      rationale: 電源部品の代替変更が追加評価の条件に該当する。購買担当の同等品という説明は評価免除の承認ではない。
+      likely_error: ファームウェア未変更または同等品という言葉だけで評価不要とする。
+  N08:
+    permanent_fix_verified:
+      expected_boolean: false
+      evidence:
+        - 再起動でサービスは復旧したが、原因は調査中で修正と再発防止検証は未実施。
+      rationale: サービス復旧と連絡状態のクローズは、恒久対策の完了条件を満たすものではない。
+      likely_error: 翌朝の業務ができたことや障害票の「クローズ」を恒久対策完了と扱う。
+  N09:
+    acceptance_agreed:
+      expected_boolean: true
+      evidence:
+        - 所定の責任者が今回の納入を受入可と明記している。
+        - 残る句読点修正は受入を妨げないと明記され、担当と期限も保守台帳にある。
+      rationale: 所定の受入条件が成立し、残件も後日対応の条件を満たしている。修正依頼の存在だけで受入を否定しない。
+      likely_error: 「修正願います」が残っていることだけで、受入合意未成立と判定する。
+  N10:
+    production_process_evaluated:
+      expected_boolean: false
+      evidence:
+        - 性能合格品は開発室での手組み・手調整品である。
+        - 標準作業と量産予定設備での製造・工程評価記録、責任者確認はない。
+      rationale: 試作品の性能確認は、指定された量産工程の評価を代替しない。
+      likely_error: 完成品が性能試験に通ったことから、量産工程も評価済みと推測する。
+  N11:
+    maintenance_in_scope:
+      expected_boolean: false
+      evidence:
+        - 部署名の復元①は承認済み仕様に戻す不具合修正で、定額保守内。
+        - 部署別小計②は承認済み仕様にない集計単位の追加で、変更合意もない。
+        - 判定対象は①だけではなく受付票の依頼全体。
+      rationale: 一部が保守内でも全体を保守内とはできないためfalse。①の保守対応を拒む意味ではなく、②を別途の変更要求に分ける。
+      likely_error: 既存不具合の存在や「修正」という件名だけで全体を保守内にする、または一部が範囲外なので①まで追加扱いにする。
+  N12:
+    current_period_declined:
+      expected_boolean: true
+      evidence:
+        - 本導入は今期に追加稟議を起こさず、来期予算と4月1日以降の開始に限定されている。
+        - 今期の最終日は3月31日で、3月中に続く支援は別案件の1拠点試行。
+        - 翌日の打合せ合意も4月開始案と試行の振り返りを対象にしている。
+      rationale: 本導入の対象と開始時期について今期に行わない方針が示されているためtrue。取引関係の継続や試行支援の受注とは両立する。
+      likely_error: 継続する打合せや有償の試行支援を、本導入が今期も検討中である証拠にする。
+  X01:
+    request_kind:
+      expected_choice: acceptance_date_advance
+      evidence:
+        - 受入検査は未着手で、実施予定は4月2日。
+        - 仕入先は本日3月31日付の検収済み返信を求めている。
+      rationale: 到着予定の変更ではなく、受入検査前の日付で検収済みと扱う依頼である。
+      likely_error: 到着済みという情報から、既に完了した検収の証明依頼だと判断する。
+    response_urgency:
+      target_level: 3
+      evidence:
+        - 現在は3月31日14:30で、回答期限は同日16:00。
+      rationale: 残りは1時間30分。期限前かつ4時間以下の段階に該当する。
+      likely_error: 検査予定日の4月2日を回答期限と混同する。
+    inspection_completed:
+      expected_boolean: false
+      evidence:
+        - 受入検査は未着手で、完了記録もない。
+        - 倉庫への到着と検収完了は別と規程に記載されている。
+      rationale: 入荷をもって受入検査が完了したとみなしてはいけない。
+      likely_error: 品物が倉庫に到着したことを、受入検査の完了と同一視する。
+  X02:
+    change_class:
+      expected_choice: inspection_process
+      evidence:
+        - 変更は検査治具の読取り待ち時間だけで、製品のハード・ソフト・データは変えない。
+      rationale: 提示された分類では検査工程変更に該当する。設定という語だけで製品ソフト変更とはしない。
+      likely_error: 製品に書き込むデータと検査治具側の設定を混同する。
+    verification_stage:
+      target_level: 4
+      evidence:
+        - 全品番・全ラインの対象条件で試験合格し、設定版F12との対応を記録済み。
+        - 独立した確認担当の証跡レビューも完了している。
+      rationale: この検証尺度の最上位条件まで記録がそろっているため段階4。
+      likely_error: 過去は口頭変更だったという背景から、今回の完了記録まで否定する。
+    production_approval_recorded:
+      expected_boolean: true
+      evidence:
+        - E-24のF12について、顧客・工場品質部門の両者の承認記録がある。
+        - 適用範囲と版は一致し、未完了の条件もない。
+      rationale: 必要な正式承認が対象変更と設定版に一致しているためtrue。
+      likely_error: 試験成績だけを承認と混同する、または実在する承認記録を読み落とす。
+  X03:
+    work_type:
+      expected_choice: firmware_update
+      evidence:
+        - 依頼はT08のファームウェアをF3.1からF3.2へ書き換える作業。
+      rationale: 記載された依頼はファームウェアの書換えであり、部品交換や操作教育ではない。
+      likely_error: 現地設備の不調という文脈だけで部品交換と分類する。
+    current_impact:
+      target_level: 2
+      evidence:
+        - 一部端末の自動読取りは使えない。
+        - 承認済みの代替検査と手動登録により、すべての製品の業務は完了できる。
+      rationale: 通常の方法では一部に支障があるが、承認済みの代替手段で全件完了できる段階2。
+      likely_error: 「ライン停止に近い」という催促から全停止とする、または手動でも完了するので支障なしとする。
+    update_authorized:
+      expected_boolean: false
+      evidence:
+        - T08へのF3.2投入承認は未登録で、緊急変更の例外もない。
+      rationale: ファイルの受領と変更承認は別。対象設備と投入版に適用する承認が存在しない。
+      likely_error: 開発担当からファイルが届いたことや客先の催促を変更承認とみなす。
+  X04:
+    acceptance_scope:
+      expected_choice: original_order_only
+      evidence:
+        - 両社責任者が承認した確認票の対象はP-40、判定は合格・受入。
+        - CH-18は別の受入単位で、確認票にも4月15日納入後の別途確認とある。
+      rationale: 本体だけの受入が成立している。営業週報や現場議事録の「一式」から追加作業の受入完了までは導けない。
+      likely_error: 見出しから案件全体を受入済みにする、または追加作業が残るので本体も未受入とする。
+    remaining_impact:
+      target_level: 2
+      evidence:
+        - 受注登録は通常どおり完了するが、月次の部門別集計の自動帳票は利用できない。
+        - 合意済みの代替手順で全対象部門の集計が期限内に完了し、未処理伝票はない。
+      rationale: 対象業務の一部に代替手段が必要だが、全件完了できているため段階2。受入の成立と業務の通常化は別の判断である。
+      likely_error: 本体受入や期限内完了を理由に支障0とする、または自動帳票の未実装だけで業務未完了の段階3以上にする。
+    operations_handover_complete:
+      expected_boolean: true
+      evidence:
+        - 連絡先・監視手順・復旧手順が記載されている。
+        - 残件CH-18には対象・担当・納入予定日・代替運用方法が対応づけられている。
+        - 日勤の当番責任者が全内容を確認し受領を記録している。
+      rationale: この案件の引継ぎは残件の消滅ではなく必要情報と受領確認で判定するためtrue。追加作業そのものの完了は意味しない。
+      likely_error: 残件が一つでもあれば引継ぎ未完了とする、または引継ぎ完了を追加作業の完了と読み替える。
+compositions:
+  X01:
+    purpose: 3つの独立したモデル出力を、採点側で業務アクションに合成する。
+    inputs: [request_kind.choice, response_urgency.score, inspection_completed.noul]
+    ordered_rules:
+      - when: いずれかの回答が欠落、型不正、または値の範囲外。
+        action: invalid
+      - when: request_kind.choice != 'acceptance_date_advance'
+        action: manual_review
+      - when: inspection_completed.noul >= 0.5
+        action: verify_actual_completion_date
+      - when: response_urgency.score >= 2.5
+        action: hold_acceptance_and_reply_by_deadline
+      - when: otherwise
+        action: hold_acceptance_and_review_reply_schedule
+    expected_action: hold_acceptance_and_reply_by_deadline
+    expected_business_behavior: |
+      3月31日付の検収済み返信と記録変更を保留する。
+      実際の受入検査の完了後に検収する旨を、本日16:00までに回答する。
+    boundary_note: |
+      ルールは上から最初に一致したものを採用する。試作ケースの合成処理であり、汎用的な購買規程ではない。
+      原子的なNoul分類と業務アクションを分け、正しい行動だけ偶然得られた場合も完全正解にしない。
+      Jevへの追加質問で他の質問の回答を参照させない。合成処理はモデルの外で行う。
+  X02:
+    purpose: 変更対象、検証段階、正式承認の3判断から、今回の設定反映の扱いを合成する。
+    inputs: [change_class.choice, verification_stage.score, production_approval_recorded.noul]
+    ordered_rules:
+      - when: いずれかの回答が欠落、型不正、または値の範囲外。
+        action: invalid
+      - when: change_class.choice != 'inspection_process'
+        action: review_change_classification
+      - when: production_approval_recorded.noul < 0.5
+        action: hold_for_production_approval
+      - when: verification_stage.score < 3.5
+        action: hold_for_verification_completion
+      - when: otherwise
+        action: apply_approved_fixture_setting
+    expected_action: apply_approved_fixture_setting
+    expected_business_behavior: |
+      E-24で承認された適用範囲に限って設定版F12を量産工程へ反映し、変更記録を残す。
+      製品ソフトや承認されていない別の設定版まで変更対象に広げない。
+    boundary_note: |
+      ルールは上から最初に一致したものを採用する。既知のE-24に対する試作の合成処理である。
+      3.5と0.5はモデル出力を扱う診断用閾値であり、現実の量産反映を自動承認する基準ではない。
+      3つの独立判断と最終アクションの両方が一致した場合だけ完全正解とする。
+  X03:
+    purpose: 依頼された作業、実際の業務影響、投入承認から、現地での対応を合成する。
+    inputs: [work_type.choice, current_impact.score, update_authorized.noul]
+    ordered_rules:
+      - when: いずれかの回答が欠落、型不正、または値の範囲外。
+        action: invalid
+      - when: work_type.choice != 'firmware_update'
+        action: review_work_scope
+      - when: update_authorized.noul >= 0.5
+        action: coordinate_approved_update
+      - when: current_impact.score >= 2.5
+        action: hold_update_and_escalate_blocked_operations
+      - when: otherwise
+        action: hold_update_continue_workaround_and_seek_approval
+    expected_action: hold_update_continue_workaround_and_seek_approval
+    expected_business_behavior: |
+      未承認のF3.2への書換えは保留する。
+      承認済みの代替検査と手動登録を継続し、T08へのF3.2投入について正式な変更審査を依頼する。
+      全件の業務が完了できる現状を共有し、全停止という報告に置き換えない。
+    boundary_note: |
+      ルールは上から最初に一致したものを採用する。現地の事実と保守ルールはこのケースの提示範囲に限る。
+      閾値は試作の分類条件であり、一般の設備保守の自動実行条件ではない。
+      3つの独立判断と最終アクションの両方が一致した場合だけ完全正解とする。
+  X04:
+    purpose: 受入範囲、現在の業務支障、運用引継ぎを組み合わせ、本体の受入登録と残件管理の次の扱いを決める。
+    inputs: [acceptance_scope.choice, remaining_impact.score, operations_handover_complete.noul]
+    ordered_rules:
+      - when: いずれかの回答が欠落、型不正、または値の範囲外。
+        action: invalid
+      - when: acceptance_scope.choice != 'original_order_only'
+        action: reconcile_acceptance_scope
+      - when: remaining_impact.score >= 2.5
+        action: address_uncompleted_business
+      - when: operations_handover_complete.noul < 0.5
+        action: complete_operations_handover
+      - when: remaining_impact.score >= 1.5
+        action: record_base_acceptance_and_track_workaround
+      - when: remaining_impact.score >= 0.5
+        action: record_base_acceptance_and_track_minor_impact
+      - when: otherwise
+        action: record_base_acceptance_and_track_change
+    expected_action: record_base_acceptance_and_track_workaround
+    expected_business_behavior: |
+      P-40だけの受入を管理台帳へ反映し、CH-18は未受入の別単位として追跡する。
+      月次集計の代替運用を継続し、残件を含めた日勤への引継ぎが完了していることを記録する。
+      本体の受入を止めたり、追加作業を含む案件全体を完了扱いにしたりしない。
+    boundary_note: |
+      ルールは上から最初に一致したものを採用する。各0.5刻みの境界は既存と同じ診断用分類方式。
+      このケースの管理上の次の扱いを合成するもので、売上計上などの会計判断や法律判断ではない。
+      3つの独立判断と最終アクションの両方が一致した場合だけ完全正解とする。
