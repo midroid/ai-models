@@ -14,6 +14,8 @@ from src.train import CharTokenizer, pick_device
 
 def load_checkpoint(path, device=None):
     device = device or pick_device()
+    # The file is a dict of weights, vocabulary, and config, not a bare tensor.
+    # Older PyTorch builds do not accept weights_only.
     try:
         checkpoint = torch.load(path, map_location=device, weights_only=False)
     except TypeError:

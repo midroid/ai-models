@@ -99,14 +99,45 @@ def pick_device():
 
 
 def cosine_lr(step, warmup_iters, lr_decay_iters, learning_rate, min_lr):
-    """Linear warmup, then cosine decay down to min_lr."""
+    """Linear warmup, then cosine decay down to min_lr.
+
+    The decay is stretched across `lr_decay_iters`, which this script sets to
+    the run's step count. A 400-step notebook call therefore reaches min_lr
+    sooner than the 2000-step laptop run.
+    """
     if step < warmup_iters:
         return learning_rate * (step + 1) / (warmup_iters + 1)
-    if step >= lr_decay_iters:
+    if lr_decay_iters <= warmup_iters or step >= lr_decay_iters:
         return min_lr
     decay_ratio = (step - warmup_iters) / (lr_decay_iters - warmup_iters)
     coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio))
     return min_lr + coeff * (learning_rate - min_lr)
+
+
+def build_optimizer(model, learning_rate, weight_decay):
+    """AdamW that decays matrices only.
+
+    LayerNorm scales, biases, and other vectors are not decayed. Tied weights
+    are the same tensor twice in `named_parameters`, so they are added once.
+    """
+    decay, no_decay = [], []
+    seen = set()
+    for _name, param in model.named_parameters():
+        if not param.requires_grad or id(param) in seen:
+            continue
+        seen.add(id(param))
+        if param.ndim >= 2:
+            decay.append(param)
+        else:
+            no_decay.append(param)
+    return torch.optim.AdamW(
+        [
+            {"params": decay, "weight_decay": weight_decay},
+            {"params": no_decay, "weight_decay": 0.0},
+        ],
+        lr=learning_rate,
+        betas=(0.9, 0.95),
+    )
 
 
 def load_text(path):
@@ -174,12 +205,7 @@ def train(
 
     model = build_model(tokenizer.vocab_size, config).to(device)
     num_parameters = model.num_parameters()
-    optimizer = torch.optim.AdamW(
-        model.parameters(),
-        lr=config["learning_rate"],
-        weight_decay=config["weight_decay"],
-        betas=(0.9, 0.95),
-    )
+    optimizer = build_optimizer(model, config["learning_rate"], config["weight_decay"])
     print(
         f"model gpt  preset {preset}  device {device}  "
         f"parameters {num_parameters:,}  steps {config['max_iters']}  "

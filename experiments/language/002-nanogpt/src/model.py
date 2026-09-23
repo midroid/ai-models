@@ -37,11 +37,13 @@ class CausalSelfAttention(nn.Module):
         self.register_buffer("bias", mask)
 
     def forward(self, x):
+        # x is (B, T, C). After the split, each of q, k, v is (B, n_head, T, head_size).
         batch, time, channels = x.size()
         query, key, value = self.c_attn(x).split(channels, dim=2)
         query = query.view(batch, time, self.n_head, self.head_size).transpose(1, 2)
         key = key.view(batch, time, self.n_head, self.head_size).transpose(1, 2)
         value = value.view(batch, time, self.n_head, self.head_size).transpose(1, 2)
+        # (B, n_head, T, T). The triangle stops a position from reading future characters.
         weights = (query @ key.transpose(-2, -1)) * (self.head_size ** -0.5)
         weights = weights.masked_fill(self.bias[:, :, :time, :time] == 0, float("-inf"))
         weights = self.attn_dropout(F.softmax(weights, dim=-1))
@@ -51,19 +53,20 @@ class CausalSelfAttention(nn.Module):
 
 
 class MLP(nn.Module):
-    """Position-wise feed-forward network, 4x wider, with GELU."""
+    """Position-wise feed-forward network, 4x wider, with GELU.
+
+    `c_proj` is named the same way as the attention projection so both residual
+    outputs receive the smaller initialization in `GPTLanguageModel`.
+    """
 
     def __init__(self, n_embd, dropout):
         super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(n_embd, 4 * n_embd),
-            nn.GELU(),
-            nn.Linear(4 * n_embd, n_embd),
-            nn.Dropout(dropout),
-        )
+        self.c_fc = nn.Linear(n_embd, 4 * n_embd)
+        self.c_proj = nn.Linear(4 * n_embd, n_embd)
+        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
-        return self.net(x)
+        return self.dropout(self.c_proj(F.gelu(self.c_fc(x))))
 
 
 class Block(nn.Module):
@@ -102,13 +105,17 @@ class GPTLanguageModel(nn.Module):
         )
         self.ln_f = nn.LayerNorm(n_embd)
         self.lm_head = nn.Linear(n_embd, vocab_size, bias=False)
+        # One matrix is both the token embedding and the output head.
         self.token_embedding.weight = self.lm_head.weight
         self.apply(self._init_weights)
-        # Residual projections start smaller so the sum of many blocks stays stable.
+        # GPT-2 scales residual projections by 1/sqrt(2 * n_layer). Attention and
+        # the MLP each add a residual, so the factor is 2 * n_layer.
         scale = 0.02 / math.sqrt(2 * n_layer)
+        seen = set()
         for name, param in self.named_parameters():
-            if name.endswith("c_proj.weight"):
+            if name.endswith("c_proj.weight") and id(param) not in seen:
                 torch.nn.init.normal_(param, mean=0.0, std=scale)
+                seen.add(id(param))
 
     def _init_weights(self, module):
         if isinstance(module, nn.Linear):
