@@ -1,0 +1,14 @@
+[project]
+name = "nanogpt-char"
+version = "0.1.0"
+description = "Character-level nanoGPT on Tiny Shakespeare"
+requires-python = ">=3.10"
+dependencies = [
+    "ipykernel",
+    "jupyter",
+    "matplotlib",
+    "torch",
+]
+
+[tool.uv]
+package = false
