@@ -21,7 +21,14 @@ uv sync
 uv run python -m src.train --preset laptop
 ```
 
+Experiment 003 pins [karpathy/nanochat](https://github.com/karpathy/nanochat) and runs a short MPS smoke. From `experiments/language/003-nanochat`:
+
+```bash
+bash smoke_mps.sh
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
 | 002 | language | nanogpt | done | nanoGPT-style character model on Tiny Shakespeare | laptop / MPS, about 30 seconds | [experiments/language/002-nanogpt](experiments/language/002-nanogpt) |
+| 003 | language | nanochat | done | Chat pipeline smoke on a tiny nanochat model | laptop / MPS, about 20 seconds once data is cached | [experiments/language/003-nanochat](experiments/language/003-nanochat) |

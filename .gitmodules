@@ -1,0 +1,3 @@
+[submodule "experiments/language/003-nanochat/upstream"]
+	path = experiments/language/003-nanochat/upstream
+	url = https://github.com/karpathy/nanochat.git

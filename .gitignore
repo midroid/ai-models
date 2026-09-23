@@ -5,3 +5,4 @@ __pycache__/
 runs/
 *.pt
 .DS_Store
+experiments/language/003-nanochat/cache/

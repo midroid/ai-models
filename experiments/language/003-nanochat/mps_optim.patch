@@ -1,0 +1,46 @@
+diff --git a/nanochat/optim.py b/nanochat/optim.py
+index 45d8c01..ae7797a 100644
+--- a/nanochat/optim.py
++++ b/nanochat/optim.py
+@@ -14,6 +14,12 @@ import torch.distributed as dist
+ from torch import Tensor
+ from nanochat.common import COMPUTE_DTYPE
+ 
++def _scalar_on(t: Tensor, device: torch.device) -> Tensor:
++    """MPS does not promote 0-D CPU scalars the way CUDA does inside lerp_."""
++    if device.type == "mps" and t.device != device:
++        return t.to(device)
++    return t
++
+ # -----------------------------------------------------------------------------
+ """
+ Good old AdamW optimizer, fused kernel.
+@@ -348,10 +354,12 @@ class MuonAdamW(torch.optim.Optimizer):
+             self._adamw_beta2_t.fill_(group['betas'][1])
+             self._adamw_eps_t.fill_(group['eps'])
+             self._adamw_wd_t.fill_(group['weight_decay'])
++            device = p_slice.device
+             adamw_step_fused(
+                 p_slice, grad_slice, state['exp_avg'], state['exp_avg_sq'],
+-                self._adamw_step_t, self._adamw_lr_t, self._adamw_beta1_t,
+-                self._adamw_beta2_t, self._adamw_eps_t, self._adamw_wd_t,
++                _scalar_on(self._adamw_step_t, device), _scalar_on(self._adamw_lr_t, device),
++                _scalar_on(self._adamw_beta1_t, device), _scalar_on(self._adamw_beta2_t, device),
++                _scalar_on(self._adamw_eps_t, device), _scalar_on(self._adamw_wd_t, device),
+             )
+ 
+             # Large params need all_gather
+@@ -392,10 +400,12 @@ class MuonAdamW(torch.optim.Optimizer):
+             self._muon_beta2_t.fill_(group["beta2"])
+             self._muon_lr_t.fill_(group["lr"] * max(1.0, shape[-2] / shape[-1])**0.5)
+             self._muon_wd_t.fill_(group["weight_decay"])
++            device = stacked_owned.device
+             muon_step_fused(
+                 grad_chunk[:num_owned], stacked_owned,
+                 state["momentum_buffer"][:num_owned], state["second_momentum_buffer"][:num_owned],
+-                self._muon_momentum_t, self._muon_lr_t, self._muon_wd_t, self._muon_beta2_t,
++                _scalar_on(self._muon_momentum_t, device), _scalar_on(self._muon_lr_t, device),
++                _scalar_on(self._muon_wd_t, device), _scalar_on(self._muon_beta2_t, device),
+                 group["ns_steps"], red_dim,
+             )
+ 
