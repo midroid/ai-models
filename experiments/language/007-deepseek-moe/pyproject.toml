@@ -1,0 +1,12 @@
+[project]
+name = "deepseek-moe-char"
+version = "0.1.0"
+description = "Character-level DeepSeekMoE on Tiny Shakespeare"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "torch",
+]
+
+[tool.uv]
+package = false
