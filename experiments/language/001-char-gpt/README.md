@@ -10,6 +10,35 @@ The architecture follows Andrej Karpathy’s nanoGPT lecture:
 
 The modules here are a reimplementation of that lecture: a bigram baseline, then a small decoder-only Transformer. Upstream code is MIT licensed; this experiment keeps the same model shape and cites that source.
 
+`models/walkthrough.ipynb` is the lecture Colab itself (data, the bigram, the attention derivation, then one self-contained training cell). The Python modules are the same ideas split into files you can run without Jupyter. The notebook's last cell is a smaller network than `models/gpt.py`: 4 layers, 64-d, block 32, 5000 steps. `--preset lecture` on `train.py` is the larger GPU configuration from the lecture repository's `gpt.py`.
+
+## Bigram and GPT
+
+Both models predict the next character. They share the text, the 90/10 split, the batch, and the block size. They differ in what they can see.
+
+| | bigram | GPT |
+| --- | --- | --- |
+| parameters (laptop) | 4,225 | 816,705 |
+| what the next character depends on | only the current character | up to `block_size` previous characters |
+| weights | one `vocab × vocab` lookup table | token embedding, position embedding, attention blocks, linear head |
+| learning rate | `1e-2` | `3e-4` |
+
+Layers, heads, embedding width, and dropout in the preset table apply only to the GPT. The bigram does not read them.
+
+A uniform guess over 65 characters scores `ln(65)` ≈ 4.17. The bigram falls to about 2.5 by learning which letters follow which. The GPT falls further, to about 1.9 on the laptop preset, because attention can use the rest of the line.
+
+## Reading the code
+
+| file | what to look at |
+| --- | --- |
+| `tokenizer.py` | sorted character set, `encode` / `decode`, ids saved in the checkpoint |
+| `bigram.py` | embedding row = logits for the next character; `generate` uses only the last position |
+| `gpt.py` | causal mask in `Head`, several heads concatenated, pre-norm residual `Block`, crop to `block_size` in `generate` |
+| `train.py` | device choice, batch where `y` is `x` shifted by one, loss printed before that step's update, checkpoint contents |
+| `sample.py` | rebuilds the model from the checkpoint, then continues a prompt |
+
+Training prints the device, parameter count, and step count at the start, then train and validation loss on the eval interval, then the checkpoint path and elapsed seconds. The same seed on MPS can move the last digits of the loss between runs.
+
 ## Layout
 
 | path | role |
@@ -99,4 +128,4 @@ Ill no.
 GLOkIquing hold
 ```
 
-The words are invented, and the lines already have the shape of a speech and a speaker label. The walkthrough notebook is the lecture Colab: it derives attention in the notebook, then trains the Colab's smaller finished model in the last cell (4 layers, 64-d, block 32, 5000 steps).
+The words are invented, and the lines already have the shape of a speech and a speaker label.
