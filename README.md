@@ -14,6 +14,14 @@ python3 -m venv .venv
 
 The script prints the device (CUDA, then Apple MPS, then CPU), the parameter count, the loss every 200 steps, and the wall-clock time. Details, the bigram baseline, and how to read the modules are in the experiment README.
 
+Experiment 002 has its own uv project. From `experiments/language/002-nanogpt`:
+
+```bash
+uv sync
+uv run python -m src.train --preset laptop
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
+| 002 | language | nanogpt | done | nanoGPT-style character model on Tiny Shakespeare | laptop / MPS, about 30 seconds | [experiments/language/002-nanogpt](experiments/language/002-nanogpt) |
