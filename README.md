@@ -41,6 +41,13 @@ uv sync
 uv run python -m src.smoke
 ```
 
+Experiment 006 has its own uv project. From `experiments/language/006-mixtral`:
+
+```bash
+uv sync
+uv run python -m src.smoke
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
@@ -48,3 +55,4 @@ uv run python -m src.smoke
 | 003 | language | nanochat | done | Chat pipeline smoke on a tiny nanochat model | laptop / MPS, about 20 seconds once data is cached | [experiments/language/003-nanochat](experiments/language/003-nanochat) |
 | 004 | language | mingpt | done | minGPT-style character model on Tiny Shakespeare | laptop / MPS, about 10 seconds | [experiments/language/004-mingpt](experiments/language/004-mingpt) |
 | 005 | language | ced | done | Causal encoder-decoder character model on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds per mode | [experiments/language/005-ced](experiments/language/005-ced) |
+| 006 | language | mixtral | done | Mixtral-style top-2 mixture of experts on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds dense and 2.5 minutes for the mixture | [experiments/language/006-mixtral](experiments/language/006-mixtral) |
