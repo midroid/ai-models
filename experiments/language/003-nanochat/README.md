@@ -57,7 +57,7 @@ The log is `cache/smoke.log`. A checkpoint lands under `cache/base_checkpoints/`
 
 ## MPS workaround
 
-`nanochat/optim.py` keeps the AdamW and Muon step scalars as 0-D CPU tensors so `torch.compile` does not recompile when they change. Eager MPS does not promote those scalars inside `lerp_`, and the first optimizer step raised `Tensor for argument #3 'weight' is on CPU, but expected it to be on GPU`. `mps_optim.patch` moves those scalars onto the parameter device when the device is MPS. `smoke_mps.sh` applies the patch if it is not already in the checkout. Upstream is otherwise the pinned commit. `TORCHDYNAMO_DISABLE=1` keeps the model and the fused steps in eager mode.
+`nanochat/optim.py` keeps the AdamW and Muon step scalars as 0-D CPU tensors so `torch.compile` does not recompile when they change. Eager MPS does not promote those scalars inside `lerp_`, and the first optimizer step raised `Tensor for argument #3 'weight' is on CPU, but expected it to be on GPU`. `mps_optim.patch` keeps the CPU buffers and `copy_`s them into one cached 0-D tensor on the parameter device. `smoke_mps.sh` applies the patch if it is not already in the checkout. Upstream is otherwise the pinned commit. `TORCHDYNAMO_DISABLE=1` keeps the model and the fused steps in eager mode.
 
 A sequence length of 128 also failed SFT: with vocab 512, every SmolTalk conversation was longer than the row, the loss mask was empty, and the loss was `nan`. Seq 512 is long enough that some conversations fit. The final SFT step still runs validation even when `--eval-every=-1`, so `--eval-tokens=512` keeps that to one batch.
 

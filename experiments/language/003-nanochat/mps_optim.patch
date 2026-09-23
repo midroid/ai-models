@@ -1,21 +1,32 @@
 diff --git a/nanochat/optim.py b/nanochat/optim.py
-index 45d8c01..ae7797a 100644
+index 45d8c01..0285a9f 100644
 --- a/nanochat/optim.py
 +++ b/nanochat/optim.py
-@@ -14,6 +14,12 @@ import torch.distributed as dist
+@@ -14,6 +14,23 @@ import torch.distributed as dist
  from torch import Tensor
  from nanochat.common import COMPUTE_DTYPE
  
 +def _scalar_on(t: Tensor, device: torch.device) -> Tensor:
-+    """MPS does not promote 0-D CPU scalars the way CUDA does inside lerp_."""
-+    if device.type == "mps" and t.device != device:
-+        return t.to(device)
-+    return t
++    """Scalar on `device` for an MPS parameter.
++
++    These buffers stay on CPU so `fill_` can change the learning rate without
++    making `torch.compile` recapture the fused step. Eager MPS does not
++    promote a CPU scalar inside `lerp_`. The first call allocates one 0-D
++    tensor on the parameter device; later calls `copy_` into it.
++    """
++    if device.type != "mps" or t.device == device:
++        return t
++    cached = getattr(t, "_mps_scalar", None)
++    if cached is None or cached.device != device or cached.dtype != t.dtype:
++        cached = torch.empty((), dtype=t.dtype, device=device)
++        t._mps_scalar = cached
++    cached.copy_(t)
++    return cached
 +
  # -----------------------------------------------------------------------------
  """
  Good old AdamW optimizer, fused kernel.
-@@ -348,10 +354,12 @@ class MuonAdamW(torch.optim.Optimizer):
+@@ -348,10 +365,12 @@ class MuonAdamW(torch.optim.Optimizer):
              self._adamw_beta2_t.fill_(group['betas'][1])
              self._adamw_eps_t.fill_(group['eps'])
              self._adamw_wd_t.fill_(group['weight_decay'])
@@ -30,7 +41,7 @@ index 45d8c01..ae7797a 100644
              )
  
              # Large params need all_gather
-@@ -392,10 +400,12 @@ class MuonAdamW(torch.optim.Optimizer):
+@@ -392,10 +411,12 @@ class MuonAdamW(torch.optim.Optimizer):
              self._muon_beta2_t.fill_(group["beta2"])
              self._muon_lr_t.fill_(group["lr"] * max(1.0, shape[-2] / shape[-1])**0.5)
              self._muon_wd_t.fill_(group["weight_decay"])
