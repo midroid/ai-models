@@ -62,6 +62,13 @@ uv sync
 uv run python -m src.smoke
 ```
 
+Experiment 009 has its own uv project. From `experiments/language/009-bias-mtp`:
+
+```bash
+uv sync
+uv run python -m src.smoke
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
@@ -72,3 +79,4 @@ uv run python -m src.smoke
 | 006 | language | mixtral | done | Mixtral-style top-2 mixture of experts on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds dense and 2.5 minutes for the mixture | [experiments/language/006-mixtral](experiments/language/006-mixtral) |
 | 007 | language | deepseek-moe | done | DeepSeekMoE shared expert and fine-grained router on Tiny Shakespeare | laptop / MPS, smoke plus about 2.5 minutes Mixtral and 4 minutes DeepSeekMoE | [experiments/language/007-deepseek-moe](experiments/language/007-deepseek-moe) |
 | 008 | language | mla | done | Multi-head latent attention versus multi-head attention on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds per mode | [experiments/language/008-mla](experiments/language/008-mla) |
+| 009 | language | bias-mtp | done | Router bias and a second predicted character on Tiny Shakespeare | laptop / MPS, smoke plus about 3.5 minutes per mode | [experiments/language/009-bias-mtp](experiments/language/009-bias-mtp) |

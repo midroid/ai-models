@@ -1,0 +1,12 @@
+[project]
+name = "bias-mtp-char"
+version = "0.1.0"
+description = "Router bias and multi-token prediction on a character-level DeepSeekMoE"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "torch",
+]
+
+[tool.uv]
+package = false
