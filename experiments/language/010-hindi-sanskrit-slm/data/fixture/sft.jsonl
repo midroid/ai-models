@@ -1,0 +1,8 @@
+{"task": "translate_hi_sa", "source": "भारत एक विशाल देश है।", "target": "भारतं विशालं राष्ट्रम् अस्ति।"}
+{"task": "translate_sa_hi", "source": "भारतं विशालं राष्ट्रम् अस्ति।", "target": "भारत एक विशाल देश है।"}
+{"task": "sanskritize_hindi", "source": "ऑफिस की मीटिंग अगले हफ्ते होगी।", "target": "कार्यालय की बैठक अगले सप्ताह होगी।", "replacements": [["ऑफिस", "कार्यालय"], ["मीटिंग", "बैठक"], ["हफ्ते", "सप्ताह"]], "meaning_preserved": true, "quality": "gold"}
+{"task": "sanskritize_hindi", "source": "मुझे ऑफिस जाने की ज़रूरत है।", "target": "मुझे कार्यालय जाने की आवश्यकता है।", "replacements": [["ऑफिस", "कार्यालय"], ["ज़रूरत", "आवश्यकता"]], "meaning_preserved": true, "quality": "gold"}
+{"task": "standard_hi", "text": "मुझे इस बारे में जानकारी चाहिए।"}
+{"task": "correct_hi", "source": "मुझे जानकारि चाहिए।", "target": "मुझे जानकारी चाहिए।"}
+{"task": "correct_sa", "source": "अहं गच्छति।", "target": "अहं गच्छामि।"}
+{"task": "translate_hi_sa", "source": "वह पुस्तक पढ़ता है।", "target": "सः पुस्तकं पठति।"}

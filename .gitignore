@@ -6,3 +6,12 @@ runs/
 *.pt
 .DS_Store
 experiments/language/003-nanochat/cache/
+.pytest_cache/
+*.egg-info/
+experiments/language/010-hindi-sanskrit-slm/data/raw/
+experiments/language/010-hindi-sanskrit-slm/data/clean/
+experiments/language/010-hindi-sanskrit-slm/data/benchmarks/
+experiments/language/010-hindi-sanskrit-slm/tokenizers/corpus.txt
+experiments/language/010-hindi-sanskrit-slm/tokenizers/*.vocab
+experiments/language/010-hindi-sanskrit-slm/tokenizers/*.model
+experiments/finetune/laya-jp/.cache/
