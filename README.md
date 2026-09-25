@@ -69,6 +69,13 @@ uv sync
 uv run python -m src.smoke
 ```
 
+Experiment 010 has its own uv project. From `experiments/language/010-hindi-sanskrit-slm`:
+
+```bash
+uv sync
+uv run python -m src.smoke
+```
+
 | id | modality | name | status | goal | compute | folder |
 | --- | --- | --- | --- | --- | --- | --- |
 | 001 | language | char-gpt | done | Character-level language model on Tiny Shakespeare | laptop / MPS, about a minute | [experiments/language/001-char-gpt](experiments/language/001-char-gpt) |
@@ -80,3 +87,4 @@ uv run python -m src.smoke
 | 007 | language | deepseek-moe | done | DeepSeekMoE shared expert and fine-grained router on Tiny Shakespeare | laptop / MPS, smoke plus about 2.5 minutes Mixtral and 4 minutes DeepSeekMoE | [experiments/language/007-deepseek-moe](experiments/language/007-deepseek-moe) |
 | 008 | language | mla | done | Multi-head latent attention versus multi-head attention on Tiny Shakespeare | laptop / MPS, smoke plus about 25 seconds per mode | [experiments/language/008-mla](experiments/language/008-mla) |
 | 009 | language | bias-mtp | done | Router bias and a second predicted character on Tiny Shakespeare | laptop / MPS, smoke plus about 3.5 minutes per mode | [experiments/language/009-bias-mtp](experiments/language/009-bias-mtp) |
+| 010 | language | hindi-sanskrit | ready | 10M Hindi–Sanskrit decoder, pretrain checkpoints every 100M tokens | laptop / MPS, smoke is one forward of the 10M model | [experiments/language/010-hindi-sanskrit-slm](experiments/language/010-hindi-sanskrit-slm) |

@@ -1,0 +1,23 @@
+[project]
+name = "hindi-sanskrit-slm"
+version = "0.1.0"
+description = "10M Hindi-Sanskrit decoder with grouped-query attention and SwiGLU"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=5.0.1",
+    "numpy",
+    "pyyaml",
+    "sacrebleu",
+    "sentencepiece",
+    "torch",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
