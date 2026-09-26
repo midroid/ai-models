@@ -1,0 +1,12 @@
+vocab_size: 16000
+n_embd: 384
+n_layer: 8
+n_head: 6
+n_kv_head: 2
+head_dim: 64
+intermediate: 960
+block_size: 512
+dropout: 0.05
+rope_theta: 100000
+rms_eps: 1.0e-5
+tie_embeddings: true

@@ -2,7 +2,14 @@
 
 import torch
 
-from src.model import MODEL_10M, build_model, count_parameters, unique_parameters
+from src.model import (
+    MODEL_10M,
+    MODEL_50M,
+    MODEL_HIGH,
+    build_model,
+    count_parameters,
+    unique_parameters,
+)
 
 
 def tiny_config():
@@ -28,6 +35,20 @@ def test_parameter_count():
     model = build_model(MODEL_10M)
     assert model.num_parameters() == 10_942_720
     assert model.lm_head.weight.data_ptr() == model.wte.weight.data_ptr()
+
+
+def test_parameter_count_50m():
+    assert count_parameters(MODEL_50M) == 50_476_544
+    model = build_model(MODEL_50M)
+    assert model.num_parameters() == 50_476_544
+    assert model.lm_head.weight.data_ptr() == model.wte.weight.data_ptr()
+    assert len(model.blocks) == 13
+
+
+def test_parameter_count_high():
+    assert count_parameters(MODEL_HIGH) == 18_143_616
+    model = build_model(MODEL_HIGH)
+    assert model.num_parameters() == 18_143_616
 
 
 def test_attention_shapes_and_causal_mask():

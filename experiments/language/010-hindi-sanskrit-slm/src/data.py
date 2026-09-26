@@ -15,6 +15,8 @@ TASK_TAGS = {
     "correct_hi": "<correct_hi>",
     "correct_sa": "<correct_sa>",
     "standard_hi": "<standard_hi>",
+    "essay_hi": "<standard_hi>",
+    "essay_sa": "<sa>",
 }
 
 

@@ -32,6 +32,40 @@ MODEL_10M = {
 
 PARAMETER_COUNT = 10_942_720
 
+MODEL_50M = {
+    "vocab_size": 32000,
+    "n_embd": 512,
+    "n_layer": 13,
+    "n_head": 8,
+    "n_kv_head": 2,
+    "head_dim": 64,
+    "intermediate": 1280,
+    "block_size": 1024,
+    "dropout": 0.05,
+    "rope_theta": 100_000,
+    "rms_eps": 1e-5,
+    "tie_embeddings": True,
+}
+
+PARAMETER_COUNT_50M = 50_476_544
+
+MODEL_HIGH = {
+    "vocab_size": 16000,
+    "n_embd": 384,
+    "n_layer": 8,
+    "n_head": 6,
+    "n_kv_head": 2,
+    "head_dim": 64,
+    "intermediate": 960,
+    "block_size": 512,
+    "dropout": 0.05,
+    "rope_theta": 100_000,
+    "rms_eps": 1e-5,
+    "tie_embeddings": True,
+}
+
+PARAMETER_COUNT_HIGH = 18_143_616
+
 
 def count_parameters(config):
     """Trainable weights for the tied decoder. RoPE tables are buffers."""

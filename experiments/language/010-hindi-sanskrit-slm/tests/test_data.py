@@ -79,6 +79,19 @@ def test_loss_mask_starts_after_tgt():
     assert supervised_count(labels) > 0
 
 
+def test_essay_mask_starts_after_tgt():
+    tokenizer = FakeTokenizer()
+    ids, labels = encode_sft(
+        {"task": "essay_sa", "source": "भारतम्", "target": "विशालं राष्ट्रम्"},
+        tokenizer,
+    )
+    tgt = tokenizer._pieces["<tgt>"]
+    tgt_at = ids.index(tgt)
+    assert ids[0] == tokenizer._pieces["<sa>"]
+    assert labels[: tgt_at + 1] == [-100] * (tgt_at + 1)
+    assert supervised_count(labels) > 0
+
+
 def test_standard_hi_is_fully_supervised():
     tokenizer = FakeTokenizer()
     ids, labels = encode_sft({"task": "standard_hi", "text": "जानकारी"}, tokenizer)

@@ -27,7 +27,17 @@ import torch
 import yaml
 
 from src.data import file_sha256, pretrain_examples, read_jsonl, sft_examples, supervised_count
-from src.model import MODEL_10M, PARAMETER_COUNT, build_model, unique_parameters, verify_cache
+from src.model import (
+    MODEL_10M,
+    MODEL_50M,
+    MODEL_HIGH,
+    PARAMETER_COUNT,
+    PARAMETER_COUNT_50M,
+    PARAMETER_COUNT_HIGH,
+    build_model,
+    unique_parameters,
+    verify_cache,
+)
 from src.tokenizer import Tokenizer, train_tokenizer, write_model_bytes
 
 EXPERIMENT_DIR = Path(__file__).resolve().parent.parent
@@ -234,12 +244,21 @@ def train(
     enforce_parameter_count=True,
     seed=1337,
     device=None,
+    model="10m",
 ):
     if stage not in ("overfit", "pretrain", "sft"):
         raise ValueError(f"unknown stage {stage}")
     device = device or pick_device()
-    model_config = dict(MODEL_10M)
-    model_config.update(load_yaml(CONFIG_DIR / "model_10m.yaml"))
+    bases = {
+        "10m": (MODEL_10M, "model_10m.yaml", PARAMETER_COUNT),
+        "50m": (MODEL_50M, "model_50m.yaml", PARAMETER_COUNT_50M),
+        "high": (MODEL_HIGH, "model_high.yaml", PARAMETER_COUNT_HIGH),
+    }
+    if model not in bases:
+        raise ValueError(f"unknown model {model}")
+    base_config, config_name, expected_count = bases[model]
+    model_config = dict(base_config)
+    model_config.update(load_yaml(CONFIG_DIR / config_name))
     train_config = load_yaml(CONFIG_DIR / ("sft.yaml" if stage == "sft" else "pretrain.yaml"))
     if model_overrides:
         model_config.update(model_overrides)
@@ -270,7 +289,7 @@ def train(
             data_path = CLEAN_PRETRAIN if CLEAN_PRETRAIN.exists() else FIXTURE_PRETRAIN
     data_path = Path(data_path)
     rows = read_jsonl(data_path)
-    extra = CLEAN_SFT.parent / "sft_cc_by_sa.jsonl"
+    extra = data_path.parent / "sft_cc_by_sa.jsonl"
     if stage == "sft" and extra.exists():
         seen = {(row.get("task"), row.get("source"), row.get("target")) for row in rows}
         for row in read_jsonl(extra):
@@ -322,8 +341,8 @@ def train(
         model.tie_weights()
     elif init:
         init_checkpoint, _, init_dir = _load_checkpoint(init)
-        if init_checkpoint["stage"] == "sft":
-            raise ValueError("sft --init expects a pretrain checkpoint")
+        if init_checkpoint["stage"] not in ("pretrain", "sft"):
+            raise ValueError("sft --init expects a pretrain or sft checkpoint")
         model.load_state_dict(init_checkpoint["model"])
         model.tie_weights()
     else:
@@ -331,9 +350,9 @@ def train(
         init_dir = None
 
     parameter_count = model.num_parameters()
-    full_model = model_config["vocab_size"] == MODEL_10M["vocab_size"] and not model_overrides
-    if enforce_parameter_count and full_model and parameter_count != PARAMETER_COUNT:
-        raise SystemExit(f"parameter count {parameter_count} is not {PARAMETER_COUNT:,}")
+    full_model = model_config["vocab_size"] == base_config["vocab_size"] and not model_overrides
+    if enforce_parameter_count and full_model and parameter_count != expected_count:
+        raise SystemExit(f"parameter count {parameter_count} is not {expected_count:,}")
 
     tokens_per_step_guess = train_config["batch_size"] * model_config["block_size"]
     if stage == "overfit":
@@ -362,7 +381,8 @@ def train(
         tokens_seen = resume_checkpoint["tokens_seen"]
         block_index = resume_checkpoint["block_index"]
         schedule = CosineSchedule.from_state(resume_checkpoint["schedule"])
-        schedule.total_steps = max(schedule.total_steps, total_steps)
+        if schedule.step < schedule.total_steps:
+            schedule.total_steps = max(schedule.total_steps, total_steps)
         optimizer.load_state_dict(resume_checkpoint["optimizer"])
         _optimizer_to_device(optimizer, device)
         restore_rng(resume_checkpoint["rng"])
@@ -657,7 +677,15 @@ def main():
     parser.add_argument("--block-size", type=int, default=None)
     parser.add_argument("--max-steps", type=int, default=None)
     parser.add_argument("--loss-stop", type=float, default=None)
+    parser.add_argument("--model", choices=("10m", "50m", "high"), default="10m")
+    parser.add_argument("--peak-lr", type=float, default=None)
+    parser.add_argument("--min-lr", type=float, default=None)
     args = parser.parse_args()
+    overrides = {}
+    if args.peak_lr is not None:
+        overrides["peak_lr"] = args.peak_lr
+    if args.min_lr is not None:
+        overrides["min_lr"] = args.min_lr
     train(
         stage=args.stage,
         data_path=args.data,
@@ -672,6 +700,8 @@ def main():
         block_size=args.block_size,
         max_steps=args.max_steps,
         loss_stop=args.loss_stop,
+        model=args.model,
+        train_overrides=overrides or None,
     )
 
 

@@ -19,9 +19,9 @@ def load_checkpoint(directory, device=None):
     directory = Path(directory)
     path = directory / "checkpoint.pt" if directory.is_dir() else directory
     try:
-        checkpoint = torch.load(path, map_location=device, weights_only=False)
+        checkpoint = torch.load(path, map_location="cpu", weights_only=False)
     except TypeError:
-        checkpoint = torch.load(path, map_location=device)
+        checkpoint = torch.load(path, map_location="cpu")
     tokenizer_path = path.parent / "tokenizer.model"
     if not tokenizer_path.exists():
         write_model_bytes(checkpoint["tokenizer_model"], tokenizer_path)
