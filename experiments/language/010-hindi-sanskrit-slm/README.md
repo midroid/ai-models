@@ -4,6 +4,14 @@ A 10,942,720-parameter decoder for Hindi and Sanskrit. Width 256, 12 layers, 8 q
 
 `tokens_seen` counts target positions whose label is not -100. Pretraining writes `runs/pretrain/tok-100m`, then `tok-200m`, and so on. Each of those directories can be supervised-finetuned on its own. The fine-tune loads weights only and starts a new AdamW.
 
+Published weights are not in git. Download them from [akashchauhan/panini-00](https://huggingface.co/akashchauhan/panini-00):
+
+```bash
+huggingface-cli download akashchauhan/panini-00 --local-dir weights/panini-00
+```
+
+The 10.9M fine-tune is `weights/panini-00/10m/checkpoint.pt`, next to `tokenizer.model`. The 18.1M and 50.5M tokenizers are `18m/tokenizer.model` and `50m/tokenizer.model`.
+
 ## Setup
 
 This experiment has its own uv project. From this directory:
