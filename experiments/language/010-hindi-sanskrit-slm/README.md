@@ -9,9 +9,10 @@ Published weights are not in git. Each Hugging Face model has `checkpoint.pt` an
 ```bash
 huggingface-cli download akashchauhan/panini-00-10m --local-dir weights/panini-00-10m
 huggingface-cli download akashchauhan/panini-00-18m --local-dir weights/panini-00-18m
+huggingface-cli download akashchauhan/panini-00-50m --local-dir weights/panini-00-50m
 ```
 
-[panini-00-10m](https://huggingface.co/akashchauhan/panini-00-10m) is the 10.9M fine-tune. [panini-00-18m](https://huggingface.co/akashchauhan/panini-00-18m) is the 18.1M fine-tune. `panini-00-50m` is not published yet.
+[panini-00-10m](https://huggingface.co/akashchauhan/panini-00-10m), [panini-00-18m](https://huggingface.co/akashchauhan/panini-00-18m), and [panini-00-50m](https://huggingface.co/akashchauhan/panini-00-50m) each contain `checkpoint.pt` and `tokenizer.model`.
 
 ## Setup
 
