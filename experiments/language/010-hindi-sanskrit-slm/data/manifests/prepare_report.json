@@ -1,0 +1,15 @@
+{
+  "pretrain_rows": 207634,
+  "pretrain_hi": 109170,
+  "pretrain_sa": 98464,
+  "sft_rows": 312176,
+  "sft_train": 308949,
+  "sft_val": 3227,
+  "gold_rejected": 11997,
+  "silver_rejected": 4,
+  "parallel_dupes": 2956,
+  "parallel_leaks": 852,
+  "mono_dupes": 40653,
+  "mono_leaks": 0,
+  "benchmark_hashes": 7392
+}

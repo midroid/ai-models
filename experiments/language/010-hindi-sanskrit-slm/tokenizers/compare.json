@@ -1,0 +1,79 @@
+{
+  "train_chars": {
+    "hi": 20436320,
+    "sa": 20435963
+  },
+  "sizes": {
+    "6000": {
+      "vocab": 6000,
+      "roundtrip": true,
+      "hi": {
+        "lines": 2183,
+        "tokens_per_word": 1.671666983142393,
+        "tokens_per_char": 0.31376897397006936,
+        "unk_rate": 1.8931744749596122e-05
+      },
+      "sa": {
+        "lines": 1969,
+        "tokens_per_word": 2.6329467759604124,
+        "tokens_per_char": 0.32149405114699053,
+        "unk_rate": 0.0
+      },
+      "probes": {
+        "\u092e\u0941\u091d\u0947 \u0915\u093c\u093e\u0928\u0942\u0928 \u0915\u0940 \u091c\u093c\u0930\u0942\u0930\u0924 \u0939\u0948\u0964": true,
+        "\u0927\u0930\u094d\u092e\u094b \u0930\u0915\u094d\u0937\u0924\u093f \u0930\u0915\u094d\u0937\u093f\u0924\u0903\u0965": true,
+        "\u091a\u093e\u0901\u0926\u0928\u0940 \u0930\u093e\u0924 \u092e\u0947\u0902 \u0916\u093c\u0924 \u0906\u092f\u093e\u0964": true,
+        "\u0905\u0928\u094d\u0924\u0930\u094d\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f\u0915\u0930\u0923\u092e\u094d": true,
+        "\u0902\u0903\u0901\u093d\u0964\u0965\u093c\u0915\u093c\u0916\u093c\u0917\u093c\u091c\u093c\u092b\u093c\u0921\u093c\u0922\u093c": true
+      }
+    },
+    "8000": {
+      "vocab": 8000,
+      "roundtrip": true,
+      "hi": {
+        "lines": 2183,
+        "tokens_per_word": 1.571175390847522,
+        "tokens_per_char": 0.29490687755675854,
+        "unk_rate": 2.0142609676509688e-05
+      },
+      "sa": {
+        "lines": 1969,
+        "tokens_per_word": 2.4617157103463905,
+        "tokens_per_char": 0.3005860064158593,
+        "unk_rate": 0.0
+      },
+      "probes": {
+        "\u092e\u0941\u091d\u0947 \u0915\u093c\u093e\u0928\u0942\u0928 \u0915\u0940 \u091c\u093c\u0930\u0942\u0930\u0924 \u0939\u0948\u0964": true,
+        "\u0927\u0930\u094d\u092e\u094b \u0930\u0915\u094d\u0937\u0924\u093f \u0930\u0915\u094d\u0937\u093f\u0924\u0903\u0965": true,
+        "\u091a\u093e\u0901\u0926\u0928\u0940 \u0930\u093e\u0924 \u092e\u0947\u0902 \u0916\u093c\u0924 \u0906\u092f\u093e\u0964": true,
+        "\u0905\u0928\u094d\u0924\u0930\u094d\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f\u0915\u0930\u0923\u092e\u094d": true,
+        "\u0902\u0903\u0901\u093d\u0964\u0965\u093c\u0915\u093c\u0916\u093c\u0917\u093c\u091c\u093c\u092b\u093c\u0921\u093c\u0922\u093c": true
+      }
+    },
+    "12000": {
+      "vocab": 12000,
+      "roundtrip": true,
+      "hi": {
+        "lines": 2183,
+        "tokens_per_word": 1.4669071882186637,
+        "tokens_per_char": 0.2753359179777995,
+        "unk_rate": 2.1574352409855164e-05
+      },
+      "sa": {
+        "lines": 1969,
+        "tokens_per_word": 2.270898651456201,
+        "tokens_per_char": 0.2772864282205561,
+        "unk_rate": 0.0
+      },
+      "probes": {
+        "\u092e\u0941\u091d\u0947 \u0915\u093c\u093e\u0928\u0942\u0928 \u0915\u0940 \u091c\u093c\u0930\u0942\u0930\u0924 \u0939\u0948\u0964": true,
+        "\u0927\u0930\u094d\u092e\u094b \u0930\u0915\u094d\u0937\u0924\u093f \u0930\u0915\u094d\u0937\u093f\u0924\u0903\u0965": true,
+        "\u091a\u093e\u0901\u0926\u0928\u0940 \u0930\u093e\u0924 \u092e\u0947\u0902 \u0916\u093c\u0924 \u0906\u092f\u093e\u0964": true,
+        "\u0905\u0928\u094d\u0924\u0930\u094d\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u0940\u092f\u0915\u0930\u0923\u092e\u094d": true,
+        "\u0902\u0903\u0901\u093d\u0964\u0965\u093c\u0915\u093c\u0916\u093c\u0917\u093c\u091c\u093c\u092b\u093c\u0921\u093c\u0922\u093c": true
+      }
+    }
+  },
+  "chosen": 12000,
+  "reason": "12k has the lowest tokens per word on both languages, unk stays ~0, nukta and danda round-trip, and the tied model is 10,942,720 parameters."
+}

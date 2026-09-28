@@ -1,0 +1,13 @@
+peak_lr: 6.0e-4
+min_lr: 6.0e-5
+warmup_ratio: 0.02
+weight_decay: 0.1
+grad_clip: 1.0
+beta1: 0.9
+beta2: 0.95
+batch_size: 4
+until_tokens: 100000000
+save_every_tokens: 100000000
+save_every_steps: 500
+eval_interval: 50
+eval_iters: 4
